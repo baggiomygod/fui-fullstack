@@ -1,10 +1,12 @@
 import * as React from 'react'
-import {connect} from 'react-redux' // ?
-import {addTodo} from '../store/action/tabAction';
+import BottomBar from '../BottomBar/BottomBar';
+import { Route, withRouter } from 'react-router-dom';
+import {connect} from 'react-redux'
+import Home from '../Home/Home';
 
 interface IProps {
-    num: number;
-    dispatch: any
+
+    dispatch?: any
 }
 class Main extends React.Component<IProps> {
     constructor (props: any) {
@@ -13,21 +15,14 @@ class Main extends React.Component<IProps> {
     public componentDidMount () {
         console.log('main...')
     }
-    public add = () => {
-        this.props.dispatch(addTodo({
-            num: 1
-        }))
-    }
     public render () {
-        const num: number = this.props.num
         return (
-            <div onClick={this.add}>main...{num}</div>
+            <div>
+                <Route exact={true} path="/home" component={Home} />
+                <BottomBar />
+            </div>
         )
     }
 }
 
-export default connect(
-    (state: any) => ({
-        num: state.tabReducer.num // 该组件中通过this.props.num 获取
-    })
-)(Main)
+export default withRouter<any>(connect()(Main))

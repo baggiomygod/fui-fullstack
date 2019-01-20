@@ -7,3 +7,11 @@
         obj
     }
 }
+
+export const changeTabs = (obj: any) => {
+    console.log('2. action...')
+    return {
+        type: types.CHANGE_TABS,
+        obj
+    }
+}

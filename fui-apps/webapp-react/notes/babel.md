@@ -1,9 +1,8 @@
 {
 	"presets": [
-    ["@babel/preset-env"],
-    // ["@babel/preset-env", {"module": true}],
     "@babel/preset-typescript",
     "@babel/preset-react",
+    ["@babel/preset-env"]
 	],
 	"plugins": [
 		["transform-runtime", {
@@ -17,3 +16,10 @@
     ["react-hot-loader/babel"]
 	]
 }
+##
+
+### preset
+1. @babel/preset-env:
+  不需要再去手动安装babel-preset-es2015或其他年份，安装@babel/preset-env即可，相当于使用了最新版本的javascript
+2. "@babel/preset-react",
+   编辑jsx
