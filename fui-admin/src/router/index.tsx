@@ -61,7 +61,7 @@ export default class ERouter extends React.Component<any, {}> {
         //                 ? BrowserRouter
         //                 : HashRouter  // HashRouter
         const Router = HashRouter
-        const adminRouderRender = (): any => (
+        const adminRouterRender = (): any => (
                 <Layout>
                     <Switch>
                         <Route exact={true} path="/home" component={Home}/>
@@ -111,7 +111,7 @@ export default class ERouter extends React.Component<any, {}> {
                     <Switch>
                         <Route path="/common" render={CommonPageRender} />
                         <Route path="/login" component={Login} />
-                        <Route path="/" render={adminRouderRender}/>
+                        <Route path="/" render={adminRouterRender}/>
                     </Switch>
                 </App>
             </Router>

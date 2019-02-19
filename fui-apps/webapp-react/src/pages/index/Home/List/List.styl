@@ -1,8 +1,24 @@
 .list-wrap{
+  padding-bottom: 60px;
   .list{
     .list-item{
-      height: 60px;
       border-bottom: 1px solid #e2e2e2;
     }
+  }
+  .loading{
+    text-align: center;
+    color: #bbb;
+    padding: 10px 0;
+    .icon-loading{
+      &:before{
+        margin-right: 10px;
+      animation: rotate 1s infinite linear
+      }
+    }
+  }
+  @keyframes rotate{
+    0%{ transform:rotate(0deg)}
+    50%{ transform:rotate(180deg)}
+    100%{ transform:rotate(360deg)}
   }
   }

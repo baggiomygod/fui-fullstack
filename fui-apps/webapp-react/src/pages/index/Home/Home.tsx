@@ -67,7 +67,7 @@ class Home extends React.Component<IProps> {
 
     public render () {
         return (
-            <div>
+            <div className="home-wrap">
                 <Header />
                 <Category />
                 <List />

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { NavLink } from 'react-router-dom'
 import './SearchBar.styl'
 /**
  * @constructor <SearchBar />
@@ -11,14 +12,13 @@ class SearchBar extends React.Component<IProps> {
     constructor (props: any) {
         super(props)
     }
-
     public render () {
         return (
             <div className="search-bar-wrap">
                 <div className="logo">F</div>
-                <div className="search">
+                <NavLink to="/search" className="search">
                   <p className="search-btn">apple</p>
-                </div>
+                </NavLink>
                 <div className="setting">
                   <i className="icon iconfont icon-caidan" />
                 </div>

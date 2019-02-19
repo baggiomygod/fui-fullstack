@@ -14,7 +14,8 @@
         "noImplicitAny": true,
         "strictNullChecks": true,
         "suppressImplicitAnyIndexErrors": true,
-        "noUnusedLocals": true
+        "noUnusedLocals": true,
+        "lib": ["es6","dom", "es2015.promise"]
     },
     "exclude": [
         "node_modules",
@@ -27,5 +28,9 @@
       ],
       "include": [
           "./src"
-      ]
+      ],
+      "typeRoots": [
+        "../node_modules/@types",
+        "../@types"
+    ]
 }

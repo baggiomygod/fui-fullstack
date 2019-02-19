@@ -1,0 +1,10 @@
+{
+    "type": "mysql",
+    "host": "cdb-1qkcive2.bj.tencentcdb.com",
+    "port": 10038,
+    "username": "root",
+    "password": "rbaggio10",
+    "database": "sys",
+    "entities": ["src/**/**.entity{.ts,.js}"],
+    "synchronize": true
+  }

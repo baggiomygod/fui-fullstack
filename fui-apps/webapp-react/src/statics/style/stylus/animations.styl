@@ -2,8 +2,18 @@
 .animation-circle {
    animation:circle 3s infinite linear;
 }
+.animation-rotate {
+  animation: rotate 1s infinite linear
+}
+// 旋转并缩放
 @keyframes circle{
   0%{ transform:rotate(0deg) scale3d(1, 1, 1); }
-  30%{ transform:rotate(180deg) scale3d(1.4, 1.4, 1.4); }
+  30%{ transform:rotate(180deg) scale3d(1, 1, 1); }
   100%{ transform:rotate(360deg) scale3d(1, 1, 1); }
+}
+// 旋转
+@keyframes rotate{
+  0%{ transform:rotate(0deg)}
+  50%{ transform:rotate(180deg)}
+  100%{ transform:rotate(360deg)}
 }

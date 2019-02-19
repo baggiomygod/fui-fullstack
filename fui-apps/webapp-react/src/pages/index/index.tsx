@@ -1,19 +1,19 @@
 import * as React from 'react'
 import * as ReactDom from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+// import { BrowserRouter as Router } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux';
 import 'lib-flexible/flexible'
-
-import store from './store'
+import Store from './store'
 import '@/statics/style/index.styl'
+import Container from './Router/Container'
 
-import Container from './Main/Container'
-
+// Store.history
 ReactDom.render(
-    <Provider store={store}>
-      <Router>
+    <Provider store={Store.store}>
+      <ConnectedRouter store={Store.store} history={Store.history}>
         <Container />
-      </Router>
+      </ConnectedRouter>
     </Provider>,
     document.getElementById('root') as HTMLElement
 )

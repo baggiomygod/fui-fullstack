@@ -6,9 +6,10 @@ import './index.styl'
  * @description Header
  */
 interface IconProps {
-  src: string
+  src?: string
   size?: 'large' | 'small' | 'default' | number
-  shape?: 'circle' | 'square';
+  shape?: 'circle' | 'square'
+  iconText?: string
 }
 interface IconState {
   scale: number;
@@ -18,10 +19,10 @@ interface IconState {
  * public private protected static 区别？
  */
 class ImgIcon extends React.Component<IconProps> {
-  public defaultProps = {
-    shape: 'circle' as IconProps['shape'],
-    size: 'default' as IconProps['size'],
-  };
+  // public defaultProps = {
+  //   shape: 'circle' as IconProps['shape'],
+  //   size: 'default' as IconProps['size'],
+  // };
   public state = {
     scale: 1,
     isImgExist: true,
@@ -34,7 +35,7 @@ class ImgIcon extends React.Component<IconProps> {
   public componentDidMount () {
     console.log(this.props)
     console.log(this.state)
-    console.log(this.defaultProps)
+    // console.log('defaultProps:', this.defaultProps)
     this.setScale()
   }
   public componentDidUpdate (prevProps: IconProps, prevState: IconState) {
@@ -46,9 +47,38 @@ class ImgIcon extends React.Component<IconProps> {
       // ...
     }
   }
+  public renderImg = () => {
+    const {src, size, shape, iconText} = this.props
+    let textStyle: React.CSSProperties = {}
+    switch (size) {
+      case 'default': textStyle = {fontSize: 24}
+      break
+      case 'small': textStyle = {fontSize: 18}
+      break
+      case 'large': textStyle = {fontSize: 32}
+      break
+      default:
+      break
+    }
+    if (typeof size === 'number') {
+      textStyle = {fontSize: size / 2}
+    }
+    const shapeStyle =
+          shape === 'circle'
+            ? {borderRadius: '100%'}
+            : {borderRadius: '5%'}
 
+    if (src) {
+      return (<img className="icon-img"style={{...shapeStyle}} src={src} alt=""/>)
+    } else {
+      return (
+        <span className="default-icon-text"
+              style={{...textStyle, ...shapeStyle}}>{iconText || 'F'}</span>
+      )
+    }
+  }
   public render() {
-    const {size, src} = this.props
+    const {size} = this.props
     const sizeStyle: React.CSSProperties =
       typeof size === 'number'
         ? {
@@ -64,8 +94,8 @@ class ImgIcon extends React.Component<IconProps> {
       }
     return (
       <span className={sizeClass} style={{...sizeStyle}}>
-          <img className="icon-img" src={src} alt=""/>
-        </span>
+        {this.renderImg()}
+      </span>
     )
   }
 }

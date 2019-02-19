@@ -8,11 +8,11 @@ const initState = {
             key: config.TAB_ICON.home,
             icon: 'icon iconfont icon-shouye'
         },
-        {
-            label: '订单',
-            key: config.TAB_ICON.order,
-            icon: 'icon iconfont icon-xiaofeimingxidan'
-        },
+        // {
+        //     label: '订单',
+        //     key: config.TAB_ICON.order,
+        //     icon: 'icon iconfont icon-xiaofeimingxidan'
+        // },
         {
             label: '用户',
             key: config.TAB_ICON.user,

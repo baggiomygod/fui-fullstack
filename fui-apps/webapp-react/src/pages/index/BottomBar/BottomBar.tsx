@@ -17,7 +17,7 @@ class BottomBar extends React.Component<IProps> {
     super(props)
   }
   public changeTabs = (tab: string): void => {
-    console.log('Redux:')
+    console.log('------Redux:-------')
     console.log('1. dispatch...')
     this.props.dispatch(changeTabs({
       activeTab: tab
@@ -28,7 +28,6 @@ class BottomBar extends React.Component<IProps> {
   }
 
   public renderBars = (tabs: any) => {
-
     return tabs.map((item: any, index: number) => {
       return (
         <NavLink className="bar-item"

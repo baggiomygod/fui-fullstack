@@ -1,10 +1,11 @@
 
 import tabReducer from './tabReducer'
-
+import articlesReducer from './articlesReducer';
 import { combineReducers } from 'redux';
 
-const reducers = combineReducers({
-    tabReducer
+const mainReducers = combineReducers({
+  tabReducer,
+  articlesReducer,
 })
 
-export default reducers
+export default mainReducers

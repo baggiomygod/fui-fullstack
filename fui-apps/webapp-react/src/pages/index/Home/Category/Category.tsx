@@ -12,6 +12,7 @@ interface ICategoryProps {
   label: string
   iconUrl: string
   key: string
+  text?: string
 }
 class Category extends React.Component {
   public state = {
@@ -22,11 +23,10 @@ class Category extends React.Component {
   }
   public componentWillMount () {
     const list = [
-      {label: '摄影', iconUrl: FuiIcon2x, key: 'photo'},
-      {label: '前端', iconUrl: FuiIcon2x, key: 'web'},
-      {label: '足球', iconUrl: FuiIcon2x, key: 'ball'},
-      {label: '旅行', iconUrl: FuiIcon2x, key: 'travel'},
-      {label: '旅行', iconUrl: '', key: 'travel'},
+      {label: '摄影', iconUrl: FuiIcon2x, key: 'photo', text: ''},
+      {label: '前端', iconUrl: FuiIcon2x, key: 'web', text: ''},
+      {label: '足球', iconUrl: FuiIcon2x, key: 'ball', text: ''},
+      {label: '旅行', iconUrl: '', key: 'travel', text: 'T'},
     ]
    this.setState({
     categoryList: list
@@ -36,7 +36,10 @@ class Category extends React.Component {
     return this.state.categoryList.map((item: ICategoryProps) => {
       return (
         <div className="category-item" key={item.key}>
-          <ImgIcon src={item.iconUrl} size={'default'}/>
+          <ImgIcon src={item.iconUrl}
+                    size={'large'}
+                    shape="circle"
+                    iconText={item.text} />
           <p className="text">{item.label}</p>
         </div>
       )

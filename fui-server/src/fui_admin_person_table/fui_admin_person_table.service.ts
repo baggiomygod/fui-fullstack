@@ -1,19 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { MongoClient } from 'mongodb'
-const mongoUrl = 'mongodb://127.0.0.1:27017/fui_admin'
-MongoClient.connect(mongoUrl, (err, db) => {
-    if (err) {
-        throw err
-    }
-    console.log('数据库已连接')
-    var dbase = db.db("fui_admin");
+
+/* 连接mongoDB数据库 */
+// import { MongoClient } from 'mongodb'
+// const mongoUrl = 'mongodb://127.0.0.1:27017/fui_admin'
+// MongoClient.connect(mongoUrl, (err, db) => {
+//     if (err) {
+//         throw err
+//     }
+//     console.log('数据库已连接')
+//     var dbase = db.db("fui_admin");
     // 创建集合
     // dbase.createCollection('city_manage', function (err, res) {
     //     if (err) throw err;
     //     console.log("创建city集合!");
     //     db.close();
     // });
-})
+// })
 
 interface IResponse {
     code: string
