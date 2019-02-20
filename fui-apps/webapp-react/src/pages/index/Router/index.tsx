@@ -5,6 +5,7 @@ import Home from '../Home/Home';
 import My from '../My/My';
 import Search from '../Search/Search';
 import Layout from '../Layout';
+import CreateArticle from '../CreateArticle/CreateArticle';
 
 interface IProps {
     dispatch?: any
@@ -33,6 +34,7 @@ class Main extends React.Component<IProps> {
               <Switch>
                 {/* <Route path="/common" render={CommonPageRender} /> */}
                 <Route exact={true} path="/search" component={Search} />
+                <Route exact={true} path="/create_article" component={CreateArticle} />
                 <Route path="/" render={mainRouterRender} />
               </Switch>
             </HashRouter>

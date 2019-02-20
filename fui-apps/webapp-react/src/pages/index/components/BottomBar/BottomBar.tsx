@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './BottomBar.styl'
 import { connect } from 'react-redux' // ?
-import { changeTabs } from '../store/action/tabAction';
+import { changeTabs } from '../../store/action/tabAction';
 import { NavLink, withRouter } from 'react-router-dom'
 /**
  * @constructor <BottomBar>

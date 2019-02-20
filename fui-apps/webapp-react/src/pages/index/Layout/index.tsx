@@ -1,5 +1,5 @@
 import * as React from 'react'
-import BottomBar from '../BottomBar/BottomBar';
+import BottomBar from '../components/BottomBar/BottomBar';
 
 /**
  * @constructor <Home />
@@ -8,12 +8,6 @@ import BottomBar from '../BottomBar/BottomBar';
 interface IProps {
   test?: string
 }
-// interface IGenericIdentityFn1 {
-//   <T>(arg: T): T
-// }
-// interface IGenericIdentityFn2<T> {
-//   (arg: T): T
-// }
 class Layout extends React.Component<IProps> {
     constructor (props: any) {
         super(props)
