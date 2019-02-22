@@ -8,14 +8,15 @@ import {TypeOrmModule} from '@nestjs/typeorm'
 import {FuiAdminPersonModule} from 'fui_admin_person_table/fui_admin_person_table.module'
 import {ArticleModule} from 'articles/articles.module'
 import { GoodsModule } from 'goods/goods.modules';
-
+  import { CosStsModule } from './cos-sts/cos-sts.module';
 // 最后要把testModule加入到app.modules.ts
 @Module({
   imports: [
-    TypeOrmModule.forRoot(), // 用于动态返回typeormmodule, 通过ormconfig.json配置文件配置连接数据库
+  TypeOrmModule.forRoot(), // 用于动态返回typeormmodule, 通过ormconfig.json配置文件配置连接数据库
     FuiAdminPersonModule,
     ArticleModule,
-    GoodsModule
+    GoodsModule,
+    CosStsModule
   ], // 加入到这里
   controllers: [AppController],
   providers: [AppService],

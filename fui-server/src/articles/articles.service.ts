@@ -3,10 +3,11 @@ import { Articles } from '../app-entities/articles.entity'
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, getManager, getConnection } from 'typeorm';
 import * as crypto from 'crypto-js'
-
+// DTO
+import {CreateArticleDto, ArticlesQueryDto} from './articles.dto'
 // nest中，要把一个类定义为服务，就要用@Injectable装饰器来提供元数据，以便让Nest可以把它作为依赖注入到控制器中
 @Injectable() // @Injectable()装饰器
-export class articlesService {
+export class ArticlesService {
 
     constructor(
         @InjectRepository(Articles)
@@ -19,7 +20,8 @@ export class articlesService {
      * articles
      * 返回文章列表
      */
-    async articles(): Promise<Articles[]> {
+    async articles(query: ArticlesQueryDto): Promise<Articles[]> {
+        console.log('query:', query)
         return await this.articlesRepository.find()
     }
     /**
@@ -33,7 +35,7 @@ export class articlesService {
         return await this.articlesRepository.findOne(params)
     }
 
-    async create(params: Articles): Promise<Articles> {
+    async create(params: CreateArticleDto): Promise<Articles> {
         let article = new Articles()
         for (let key in params) {
             article[key] = params[key]

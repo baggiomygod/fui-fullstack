@@ -4,28 +4,7 @@
 
 
 # 1.nestjs使用
-- main.ts 应用的入口文件。它使用nestFactory用来创建Nest应用实例
-- app.module.ts 定义AppModule应用程序的根模块
-- app.controller.ts 带有单个路由的基本控制器示例
-1. main.ts
-
-## 1. 控制器Controllers
-控制器应处理HTTP请求并将复杂的任务他委托给**服务service**。
-### 1. 路由
-### 2. Request对象
-### 3. 资源
-### ...
-
-## 2. 提供者Providers
-几乎所有东西都可以是Providers: service, repository, factory helper等等。他们都可以通过```constructor```注入依赖关系，也就是说，他们可以创建各种关系。但事实上，Providers不过是一个用一个```@Injectable()```装饰器注解的简单类
-
-Providders是纯粹的javascript类，其上方有```@Injectable()```装饰器
-### @Injectable()
-在 Nest 中，要把一个类定义为服务，就要用 @Injectable 装饰器来提供元数据，以便让 Nest 可以把它作为依赖注入到控制器中。
-
-> 由于Nest可以以更多的面向对象方式设计和组织依赖，因此我们强烈建议遵循SOLID原则
-
-
+见nestjs.md
 
 # 2.typeorm使用
 ## 1. 安装配置
