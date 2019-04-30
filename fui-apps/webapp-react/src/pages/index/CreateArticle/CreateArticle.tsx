@@ -1,6 +1,6 @@
 import * as React from 'react'
 import './CreateArticle.styl'
-
+import UploadImg from '../components/UploadImg/UploadImg';
 /**
  *
  */
@@ -15,6 +15,7 @@ interface IPorps {
     return (
       <div className="create-article-wrap">
           <button onClick={this.save}>create...</button>
+          <UploadImg />
       </div>
     )
 

@@ -20,6 +20,4 @@ export class goodsController {
     async findGoodsById(@Param() params): Promise<Goods> {
         return this.goodsService.findGoodsById(params.id)
     }
-
-   
 }

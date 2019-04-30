@@ -6,7 +6,7 @@ import CanvasBg from './components/canvasBg'
 import * as Cookies from 'js-cookie'
 // import { browserHistory } from 'react-router';
 
-import CommonService from 'src/service/common'
+// import CommonService from 'src/service/common'
 import './index.scss'
 
 interface IUserFormProps extends FormComponentProps {
@@ -18,21 +18,24 @@ class LoginForm extends React.Component<IUserFormProps, any>{
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     public handleSubmit(e:any):void {
-        const userInfo:any = this.props.form.getFieldsValue();
+        // const userInfo:any = this.props.form.getFieldsValue();
         e.preventDefault()
         this.props.form.validateFields((err:any, values:string) => { 
             if(!err) {
-                CommonService.login(
-                    {
-                        username: userInfo.userName,
-                        password: userInfo.password
-                    }
-                ).then((res:any) => {
-                    if (res.code === 0) {
-                        Cookies.set('authorization', 'fui')
-                        location.replace("#/home")
-                    }
-                })
+                location.replace("#/home")
+                Cookies.set('authorization', 'fui')
+
+                // CommonService.login(
+                //     {
+                //         username: userInfo.userName,
+                //         password: userInfo.password
+                //     }
+                // ).then((res:any) => {
+                //     if (res.code === 0) {
+                //         Cookies.set('authorization', 'fui')
+                //         location.replace("#/home")
+                //     }
+                // })
             }
         })
     }

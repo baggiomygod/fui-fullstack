@@ -7,6 +7,7 @@ export class CosStsController {
     @Get()
     async root(): Promise<any>{
         const response = await this.cosStsService.root()
+        console.log(response)
         return await response
     }
 }

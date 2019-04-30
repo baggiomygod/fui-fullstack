@@ -1,3 +1,4 @@
+/* tslint:disable */
 export const getAuthorization = (options: any, callback: (opt: any) => void) => {
 
   // 格式一、（推荐）后端通过获取临时密钥给到前端，前端计算签名
@@ -10,8 +11,10 @@ export const getAuthorization = (options: any, callback: (opt: any) => void) => 
   xhr.onload = (e: any) => {
       try {
           var data = JSON.parse(e.target.responseText);
+          console.log('response:', data)
           var credentials = data.credentials;
       } catch (e) {
+
       }
       callback({
           TmpSecretId: credentials.tmpSecretId,

@@ -1,4 +1,4 @@
-import {http} from 'src/axios/http'
+import { http } from 'src/axios/http'
 export default {
     // 登录
     login (params: any): any {

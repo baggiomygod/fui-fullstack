@@ -8,7 +8,8 @@ import {TypeOrmModule} from '@nestjs/typeorm'
 import {FuiAdminPersonModule} from 'fui_admin_person_table/fui_admin_person_table.module'
 import {ArticleModule} from 'articles/articles.module'
 import { GoodsModule } from 'goods/goods.modules';
-  import { CosStsModule } from './cos-sts/cos-sts.module';
+import { NewsModule } from 'news/news.module';
+import { CosStsModule } from './cos-sts/cos-sts.module';
 // 最后要把testModule加入到app.modules.ts
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { GoodsModule } from 'goods/goods.modules';
     FuiAdminPersonModule,
     ArticleModule,
     GoodsModule,
-    CosStsModule
+    CosStsModule,
+    NewsModule,
   ], // 加入到这里
   controllers: [AppController],
   providers: [AppService],

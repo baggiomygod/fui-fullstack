@@ -36,3 +36,5 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## 进展
+1. 20190427 auth 登录

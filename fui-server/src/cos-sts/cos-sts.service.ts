@@ -9,11 +9,11 @@ const STS = require('qcloud-cos-sts')
 export class CosStsService {
     async root(): Promise<any> {
         const config = {
-            secretId: 'AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            secretKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            secretId: 'AKIDZt353oDTM1RcYFj0B8pHTRCm7l9IrrHS',
+            secretKey: '70kEUVHqBKEyWptiJerphKitqY0LRN4Z',
             proxy: '',
             durationSeconds: 1800,
-            bucket: 'test-1250000000',
+            bucket: 'test-1258297209',
             region: 'ap-guangzhou',
             allowPrefix: 'upload_file/*',
             // 密钥的权限列表
@@ -47,12 +47,13 @@ export class CosStsService {
         const startTime = Math.round(Date.now() / 1000);
         let response
         return new Promise((resolve, reject) => {
+            console.log('id:', config.secretId)
             STS.getCredential({
                 secretId: config.secretId,
                 secretKey: config.secretKey,
                 proxy: config.proxy,
                 durationSeconds: config.durationSeconds,
-                policy: policy,
+                policy,
             }, (err, tempKeys) => {
                 response = (err || tempKeys) || '';
                 resolve(response)
