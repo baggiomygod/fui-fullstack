@@ -13,7 +13,27 @@ const getList = (author, keyword) => {
 const getDetail = (id) => {
     return {id:1, title: '标题', content: 'xxxx', createTime: '2019-02-02 19:11:11', author: 'wf'}
 }
+const createBog = (blogData = {}) => {
+    // blogData 是一个博客对象
+    console.log('blogData:', blogData)
+    return {
+        id: 1
+    }
+}
+
+const updateBlog = (id, blogData = {}) => {
+    console.log('id:', id)
+    console.log('blogData:', blogData)
+    return true
+}
+
+const delBlog = (id) => {
+    return true
+}
 module.exports = {
     getList,
-    getDetail
+    getDetail,
+    createBog,
+    updateBlog,
+    delBlog
 }
