@@ -1,13 +1,14 @@
+const {exec} = require('../db/mysql')
 const getList = (author, keyword) => {
-    // mock 正确格式的数据
-    return [
-        {id:1, title: '标题', content: 'xxxx', createTime: '2019-02-02 19:11:11', author: 'wf'},
-        {id:2, title: '标题', content: 'xxxx', createTime: '2019-02-02 19:11:11', author: 'wf'},
-        {id:3, title: '标题', content: 'xxxx', createTime: '2019-02-02 19:11:11', author: 'wf'},
-        {id:4, title: '标题', content: 'xxxx', createTime: '2019-02-02 19:11:11', author: 'wf'},
-        {id:5, title: '标题', content: 'xxxx', createTime: '2019-02-02 19:11:11', author: 'wf'},
-        {id:6, title: '标题', content: 'xxxx', createTime: '2019-02-02 19:11:11', author: 'wf'}
-    ]
+    let sql = `select * from blogs where 1=1 ` // 1=1永远成立，防止后面没值报错
+    if (author) {
+        sql += `and author='${author}' `
+    }
+    if (keyword) {
+        sql += `and title like '%${keyword}%'`
+    }
+    sql += `order by createtime desc;`
+    return exec(sql)
 }
 
 const getDetail = (id) => {

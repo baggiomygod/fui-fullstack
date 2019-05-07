@@ -1,6 +1,6 @@
 const {getList, getDetail, createBog, updateBlog, delBlog} = require('../controller/blog.controller')
 const {SuccessModel, ErrorModel} = require('../model/resModel')
-const handleBlogRouter = (req, res) => {
+const handleBlogRouter = async (req, res) => {
     const method = req.method
     const url = req.url
     const path = url.split('?')[0]
@@ -9,8 +9,8 @@ const handleBlogRouter = (req, res) => {
     if (method === 'GET' && path === '/api/blog/list') {
         const author = req.query.author || ''
         const keyword = req.query.keyword || ''
-        const blogData = getList(author, keyword)
-        return new SuccessModel(blogData, '查询成功')
+        const result = await getList(author, keyword)
+        return new SuccessModel(result, '查询成功')
     }
 
     // 获取博客详情
