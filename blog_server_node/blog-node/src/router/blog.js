@@ -1,4 +1,4 @@
-const {getList, getDetail, createBog, updateBlog, delBlog} = require('../controller/blog.controller')
+const {getList, getDetail, createBlog, updateBlog, delBlog} = require('../controller/blog.controller')
 const {SuccessModel, ErrorModel} = require('../model/resModel')
 const handleBlogRouter = async (req, res) => {
     const method = req.method
@@ -16,31 +16,31 @@ const handleBlogRouter = async (req, res) => {
     // 获取博客详情
     if (method === 'GET' && path === '/api/blog/detail') {
         const id = req.query.id || ''
-        const bolgData = getDetail(id)
-        return new SuccessModel(bolgData, '成功')
+        const blogData = await getDetail(id)[0]
+        return new SuccessModel(blogData, '成功')
     }
     // 新增博客
     if (method === 'POST' && path === '/api/blog/add') {
-        const blogData = req.body
-        const data = createBog(blogData)
-        return new SuccessModel(data, '新建成功')
+        const data = await createBlog(req.body)
+        return new SuccessModel({id: data.insertId}, '新建成功')
     }
     // 修改博客
     if (method === 'POST' && path === '/api/blog/update') {
         const bolgData = req.body
         const id = blogId
-        const result = updateBlog(id, bolgData)
-        if (result) {
-            return new SuccessModel(result, '修改成功')
+        const result = await updateBlog(id, bolgData)
+        if (result.affectedRows > 0) {
+            return new SuccessModel({}, '修改成功')
         } else {
             return new ErrorModel('修改失败')
         }
     }
 
+    // 删除
     if (method === 'POST' && req.path === '/api/blog/del') {
-        const result = delBlog(blogId)
-        if (result) {
-            return new SuccessModel(result, '删除成功')
+        const result = await delBlog(blogId, req.body)
+        if (result.affectedRows > 0) {
+            return new SuccessModel({}, '删除成功')
         } else {
             return new ErrorModel('修改失败')
         }
