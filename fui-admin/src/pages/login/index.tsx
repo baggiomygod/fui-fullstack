@@ -6,7 +6,7 @@ import CanvasBg from './components/canvasBg'
 import * as Cookies from 'js-cookie'
 // import { browserHistory } from 'react-router';
 
-// import CommonService from 'src/service/common'
+import CommonService from 'src/service/common'
 import './index.scss'
 
 interface IUserFormProps extends FormComponentProps {
@@ -18,24 +18,24 @@ class LoginForm extends React.Component<IUserFormProps, any>{
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     public handleSubmit(e:any):void {
-        // const userInfo:any = this.props.form.getFieldsValue();
+        const userInfo:any = this.props.form.getFieldsValue();
         e.preventDefault()
         this.props.form.validateFields((err:any, values:string) => { 
             if(!err) {
-                location.replace("#/home")
-                Cookies.set('authorization', 'fui')
-
-                // CommonService.login(
-                //     {
-                //         username: userInfo.userName,
-                //         password: userInfo.password
-                //     }
-                // ).then((res:any) => {
-                //     if (res.code === 0) {
-                //         Cookies.set('authorization', 'fui')
-                //         location.replace("#/home")
-                //     }
-                // })
+                // location.replace("#/home")
+                // Cookies.set('authorization', 'fui')
+                CommonService.login(
+                    {
+                        username: userInfo.userName,
+                        password: userInfo.password
+                    }
+                ).then((res:any) => {
+                    console.log(res)
+                    if (res && res.code === 0) {
+                        Cookies.set('authorization', 'fui')
+                        location.replace("#/home")
+                    }
+                })
             }
         })
     }
@@ -81,10 +81,10 @@ class LoginForm extends React.Component<IUserFormProps, any>{
                                         required: true,
                                         message:'请输入密码'
                                     },
-                                    {
-                                        pattern: new RegExp('^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$', 'g'),
-                                        message:'密码必须是8~16位数字字母组合'
-                                    }
+                                    // {
+                                        // pattern: new RegExp('^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$', 'g'),
+                                        // message:'密码必须是8~16位数字字母组合'
+                                    // }
                                 ]
                             })(
                                 <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="请输入密码" />

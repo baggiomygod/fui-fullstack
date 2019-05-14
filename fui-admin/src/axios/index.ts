@@ -8,6 +8,7 @@ interface IOptions {
     timeout?: number
     params?: any
     data?: any
+    body?: any
 }
 interface IWeatherAPIRes {
     status: string
@@ -20,6 +21,7 @@ export default class Axios {
         config: any = {proxy_target: 'http://localhost:8000'}, 
         chain = (data:any) => data 
     ) {
+        console.log('axios:', config)
         this.domain = config.proxy_target
         this.chain = chain
     }
@@ -44,24 +46,15 @@ export default class Axios {
 
     // 静态属性是存在于类本身上的属性，
     public ajax(options: IOptions) {
-        // let loading: any
-        // if (options.data && options.data.isShowLoading !== false) {
-        //     loading = document.getElementById('ajaxLoading');
-        //     loading.style.display = 'block'
-        // }
-
-        // return new Promise((resolve, reject) => {
-        return axios({
+        console.log('options:', options)
+        return axios({  
                     url: options.url,
                     method: options.method,
                     baseURL: this.domain,
                     timeout: 5000,
-                    params: options.params || ''
+                    params: options.params,
+                    data: options.data
                 }).then((response:any) => {
-                    // if (options.data && options.data.isShowLoading !== false) {
-                    //     loading = document.getElementById('ajaxLoading');
-                    //     loading.style.display = 'none';
-                    // }
                     if (response.status >= 400) { 
                         return response
                     }

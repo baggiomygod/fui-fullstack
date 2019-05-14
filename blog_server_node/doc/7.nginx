@@ -1,0 +1,13 @@
+```
+    work_processes 2;  # 运行的机器是几核的， 
+    
+    # 前端页面地址
+    location / {
+        proxy_pass: http://localhost:3000
+    }
+    # 请求接口 代理到后端服务端口
+    location /api {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+    }
+```
