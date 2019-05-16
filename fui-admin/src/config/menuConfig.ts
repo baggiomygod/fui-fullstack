@@ -182,6 +182,18 @@ const MenuConfig: object[] = [
         ]
     },
     {
+        title: '博客',
+        key: '/blog',
+        icon: 'appstore',
+        children: [
+            {
+                title: '博客管理',
+                key: '/blog/list',
+                icon: 'file-markdown'
+            },
+        ]
+    },
+    {
         title: 'we-eat',
         key: '/eat',
         icon: 'shop',

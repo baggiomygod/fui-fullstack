@@ -113,3 +113,19 @@ Interface 'RcFile' incorrectly extends interface 'File'.
 
 3. react-router Type 'Location' is not generic.
 删除@type/react-router 解决
+
+4. antd upload interface.d.ts报错
+
+```
+export interface RcFile extends File {
+    uid: string;
+    lastModifiedDate?: Date;
+}
+```
+修改源码后(如何真正处理？)
+```
+export interface RcFile extends File {
+    uid: string;
+    lastModifiedDate: Date | any;
+}
+```

@@ -40,6 +40,7 @@
     "@types/less": "^0.0.33",
     "@types/node": "^10.5.2",
     "@types/prop-types": "^15.5.7",
+    "@types/qs": "^6.5.3",
     "@types/react": "16.4.6",
     "@types/react-dom": "16.0.1",
     "@types/react-router-dom": "^4.3.0",
@@ -142,11 +143,10 @@
     "extends": "react-app"
   },
   "proxy": {
-      "/api": {
-        "target": "http://localhost:8000",
-        "changeOrigin": true,
-        "secure": false
-      }
+    "/api": {
+      "target": "http://localhost:8000",
+      "changeOrigin": true,
+      "secure": false
+    }
   }
-
 }

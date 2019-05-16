@@ -8,13 +8,14 @@ redisClient.on('error', err => {
 })
 
 function redisSet(key, val) {
-    console.log('resid set...')
-
+    console.log('resid set:', key, val)
     if (typeof val === 'object') {
         val = JSON.stringify(val)
     }
     redisClient.set(key, val, redis.print)
+    redisGet(key).then(res => { console.log('get after set:', res) })
 }
+
 function redisGet(key) {
     console.log('resid get...')
     const promise = new Promise((resolve, reject) => {
@@ -28,7 +29,7 @@ function redisGet(key) {
                 resolve(null)
             }
 
-            try{
+            try {
                 resolve(JSON.parse(val))
             } catch (ex) {
                 resolve(val)
@@ -42,4 +43,3 @@ module.exports = {
     redisGet,
     redisSet
 }
-

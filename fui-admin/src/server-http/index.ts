@@ -40,10 +40,12 @@ function handleErr(res: any) {
  * post 默认
  */
 function handleMethodConfig(config: any) {
+	config.headers['Content-Type'] = 'application/json'
 	if (config.method === 'get') {
         // config.params = { ...config.params }
 	} else if (config.method === 'post') {
-        // config.data = { ...config.data }
+				// config.data = { ...config.data }
+				console.log(config)
 	}
 }
 
@@ -55,7 +57,6 @@ function handleMethodConfig(config: any) {
 service.interceptors.request.use(
     (config: any) => {
 			// config.headers = {...config.headers }
-			console.log(config.headers)
 			handleMethodConfig(config) // get post请求参数配置
       return config
     },

@@ -3,7 +3,7 @@ import {Card, Input, Button, Form, Icon, Checkbox, Avatar} from 'antd'
 import userIcon from 'src/resource/logo/fui-2x.png'
 import { FormComponentProps } from 'antd/lib/form';
 import CanvasBg from './components/canvasBg'
-import * as Cookies from 'js-cookie'
+// import * as Cookies from 'js-cookie'
 // import { browserHistory } from 'react-router';
 
 import CommonService from 'src/service/common'
@@ -24,15 +24,13 @@ class LoginForm extends React.Component<IUserFormProps, any>{
             if(!err) {
                 // location.replace("#/home")
                 // Cookies.set('authorization', 'fui')
-                CommonService.login(
-                    {
-                        username: userInfo.userName,
-                        password: userInfo.password
-                    }
-                ).then((res:any) => {
+                const params = {
+                    username: userInfo.userName,
+                    password: userInfo.password
+                }
+                CommonService.login(params).then((res:any) => {
                     console.log(res)
                     if (res && res.code === 0) {
-                        Cookies.set('authorization', 'fui')
                         location.replace("#/home")
                     }
                 })

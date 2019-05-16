@@ -1,5 +1,6 @@
-const {login} = require('../controller/user.controller')
-const {SuccessModel, ErrorModel} = require('../model/resModel')
+const { login } = require('../controller/user.controller')
+const { SuccessModel, ErrorModel } = require('../model/resModel')
+const { redisSet } = require('../db/redis')
 
 // 获取cookie过期时间
 const getCookieExpires = () => {
@@ -8,19 +9,21 @@ const getCookieExpires = () => {
     return date.toGMTString()
 }
 
-const handleUserRouter = async (req, res) => {
+const handleUserRouter = async(req, res) => {
     const method = req.method
     const url = req.url
     const path = url.split('?')[0]
-    // 登录 
+        // 登录 
     if (method === 'POST' && path === '/api/user/login') {
-        const {username, password} = req.body
+        console.log('req body:', req.body)
+        const { username, password } = req.body
         const result = await login(username, password)
         const userData = JSON.parse(JSON.stringify(result))
         if (userData[0]) {
-            req.session.username = userData[0].username
-            req.session.realname = userData[0].realname
-            console.log('login router:', req.session)
+            req.session['username'] = userData[0].username
+            req.session['realname'] = userData[0].realname
+                // 同步到redis req.sessionId在app.js中设置
+            redisSet(req.sessionId, req.session)
             return new SuccessModel(userData, '登录成功')
         } else {
             return new ErrorModel('登录失败')
