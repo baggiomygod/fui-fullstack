@@ -95,15 +95,7 @@ const serverHandle = async(req, res) => {
         })
         .then(async(postData) => {
             req.body = postData
-                // 处理blog路由
-            const blogData = await handleBlogRouter(req, res)
-            if (blogData) {
-                needSetCookie && res.setHeader('Set-Cookie', `userid=${userId}; path=/; httponly; expires=${getCookieExpires()}`)
-                res.end(JSON.stringify(blogData))
-                return
-            }
-
-            // 处理user路由
+                // 处理user路由
             const userData = await handleUserRouter(req, res)
             if (userData) {
                 console.log('need set cookie:', needSetCookie, userData)
@@ -111,6 +103,15 @@ const serverHandle = async(req, res) => {
                 res.end(JSON.stringify(userData))
                 return
             }
+            // 处理blog路由
+            const blogData = await handleBlogRouter(req, res)
+            if (blogData) {
+                needSetCookie && res.setHeader('Set-Cookie', `userid=${userId}; path=/; httponly; expires=${getCookieExpires()}`)
+                res.end(JSON.stringify(blogData))
+                return
+            }
+
+
 
             // 没有匹配到路由
             res.writeHead(404, { 'Content-type': 'text/plain' })

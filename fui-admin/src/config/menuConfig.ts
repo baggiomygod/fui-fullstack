@@ -142,7 +142,7 @@ const MenuConfig: object[] = [
     },
     {
         title: 'cms',
-        key: '/mooc',
+        key: '/cms',
         icon: 'appstore',
         children: [
             {
@@ -155,20 +155,6 @@ const MenuConfig: object[] = [
                 key: '/cms/person',
                 icon: 'user'
             },
-            // {
-            //     title: '订单管理',
-            //     key: '/order',
-            //     btnList: [
-            //         {
-            //             title: '订单详情',
-            //             key: 'detail'
-            //         },
-            //         {
-            //             title: '结束订单',
-            //             key: 'finish'
-            //         }
-            //     ]
-            // },
             {
                 title: '团队管理',
                 key: '/cms/user',

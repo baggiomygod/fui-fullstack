@@ -6,7 +6,6 @@ const { SuccessModel, ErrorModel } = require('../model/resModel')
      */
 const loginCheck = (req) => {
     if (!req.session.username) {
-        console.log('error...')
         return new ErrorModel({}, '尚未登录')
     }
 }
@@ -16,9 +15,9 @@ const handleBlogRouter = async(req, res) => {
     const url = req.url
     const path = url.split('?')[0]
     const blogId = req.query.id || ''
-    const loginCheckResoult = loginCheck(req)
 
     // 检验登录
+    const loginCheckResoult = loginCheck(req)
     if (loginCheckResoult) {
         return loginCheckResoult
     }

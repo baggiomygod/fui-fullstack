@@ -41,6 +41,9 @@ import PersonPage from 'src/pages/cms/person'
 import RichPage from 'src/pages/cms/rich'
 import TeamPage from 'src/pages/cms/team'
 
+// blog
+import BlogPage from 'src/pages/blog/blogList'
+
 // echarts
 import BarPage from 'src/pages/ui/echarts/bar'
 import LinePage from 'src/pages/ui/echarts/line'
@@ -87,6 +90,9 @@ export default class ERouter extends React.Component<any, {}> {
                         <Route exact={true} path="/cms/person" component={PersonPage} />
                         <Route exact={true} path="/cms/user" component={TeamPage} />
                         <Route exact={true} path="/cms/carMap" component={CarMapPage} />
+                        
+                        {/* 博客 */}
+                        <Route exact={true} path="/blog/list" component={BlogPage} />
 
                         <Route exact={true} path="/ui/charts/bar" component={BarPage} />
                         <Route exact={true} path="/ui/charts/pie" component={PiePage} />
