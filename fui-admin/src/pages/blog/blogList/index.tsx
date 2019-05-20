@@ -1,12 +1,32 @@
 import * as React from 'react';
-import {Table, Popconfirm, Card} from 'antd'
+import {Table, Popconfirm, Card, message, Modal} from 'antd'
 import blogService from 'src/service/blog'
-
+import './index.less'
+interface IArticle {
+    title?:string
+    content?:string
+    createtime?:string
+    author?:string
+}
+interface IState {
+    articleContent: IArticle
+    list: any[]
+    loading: boolean
+    pagination: any
+    articleVisible: boolean
+}
 class BlogPage extends React.Component{
-    public state = {
+    public state: IState = {
         list: [],
         loading: false,
-        pagination: {}
+        pagination: {},
+        articleVisible: false, // 文章详情visible
+        articleContent: {
+            title: '',
+            content: '',
+            createtime: '',
+            author: ''
+        } // 文章详情
     }
     public componentDidMount(){
         this.getTableData()
@@ -31,8 +51,6 @@ class BlogPage extends React.Component{
         }).catch((err:any) => {
             console.log(err)
         })
-        
-
     }
     /**
      * 删除博客
@@ -45,6 +63,9 @@ class BlogPage extends React.Component{
             console.log('删除：', res)
             if (res.code === 0) {
                 // this.filterForm.requestList()
+                message.success('删除成功')
+            } else {
+                message.error('删除失败')
             }
         }).catch((err:any) => {
             console.log(err)
@@ -59,18 +80,30 @@ class BlogPage extends React.Component{
             loading: true
         })
         console.log('查看详情...')
-        // this.personDetail.getPersonData(id)
+        blogService.getBlogDetail({id})
+        .then((res:any) => {
+            console.log(res)
+            this.setState({
+                loading: false,
+                articleVisible: true,
+                articleContent: res.data
+            })
+        })
+        
+    }
+    public hanldeCancel = () => {
         this.setState({
-            loading: false
+            articleVisible: false
+        })
+    }
+    public handleOk = () => {
+        this.setState({
+            articleVisible: false
         })
     }
     public render () {
-        // const bindPropFun = (list: any[]) => {
-        //     this.setState({
-        //         loading: true
-        //     })
-        //     this.getTableData(list)
-        // }
+       
+        const { articleContent, articleVisible, pagination, list, loading } = this.state
         // 表格列
         const columns = [
             {title: 'id', dataIndex: 'id'},
@@ -91,13 +124,14 @@ class BlogPage extends React.Component{
                         <div className="operate-btns">
                             <a onClick={bindViewDetail}>详情</a>
                             <Popconfirm title="确认删除?" cancelText="取消" okText="确定" onConfirm={bindHandleDel}>
-                                <a href="#">删除</a>
+                                <a>删除</a>
                             </Popconfirm>
                         </div>
                     )
                 }
             }
         ]
+        
         
         return (
             <div className="blog-page-wrap">
@@ -110,12 +144,26 @@ class BlogPage extends React.Component{
                         bordered={true}
                         columns={columns}
                         rowKey="id"
-                        pagination={this.state.pagination}
-                        loading={this.state.loading}
-                        dataSource={this.state.list}
+                        pagination={pagination}
+                        loading={loading}
+                        dataSource={list}
                     />
                 </Card>
-                {/* <PersonDetail onRef={this.onDetailRef} /> */}
+                <Modal title="文章详情"
+                        visible={articleVisible}
+                        onOk={this.handleOk}
+                        onCancel={this.hanldeCancel}
+                        okText="确认"
+                        cancelText="取消">
+                        <section>
+                        <h2>{articleContent.title}</h2>
+                        <p>{articleContent.content}</p>
+                        <div>
+                            <span>{articleContent.createtime}</span>
+                            <span>{articleContent.author}</span>
+                        </div>
+                        </section>
+                </Modal>
             </div>
         )
     }

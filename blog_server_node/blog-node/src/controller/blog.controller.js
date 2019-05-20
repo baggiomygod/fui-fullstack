@@ -64,10 +64,10 @@ const updateBlog = (id, blogData = {}) => {
  * 删除
  * @param {*} id 
  */
-const delBlog = (id, blogData) => {
-    const { author } = blogData
+const delBlog = (id, author) => {
     // delete from users where username='fan1130'
     const sql = `delete from blogs where id='${id}' and author='${author}'`
+    console.log('del sql:', sql)
     return exec(sql)
 }
 module.exports = {

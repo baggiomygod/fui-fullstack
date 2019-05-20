@@ -6,7 +6,7 @@ const { SuccessModel, ErrorModel } = require('../model/resModel')
      */
 const loginCheck = (req) => {
     if (!req.session.username) {
-        return new ErrorModel({}, '尚未登录')
+        return new ErrorModel({}, '尚未登录', 404)
     }
 }
 
@@ -33,8 +33,9 @@ const handleBlogRouter = async(req, res) => {
     // 获取博客详情
     if (method === 'GET' && path === '/api/blog/detail') {
         const id = req.query.id || ''
-        const blogData = await getDetail(id)[0]
-        return new SuccessModel(blogData, '成功')
+        console.log('id:', id)
+        const blogData = await getDetail(id)
+        return new SuccessModel(blogData[0], '成功')
     }
     // 新增博客
     if (method === 'POST' && path === '/api/blog/add') {
@@ -60,11 +61,20 @@ const handleBlogRouter = async(req, res) => {
 
     // 删除
     if (method === 'POST' && req.path === '/api/blog/del') {
-        const result = await delBlog(blogId, req.body)
+        const id = Number(blogId)
+        if (isNaN(id)) {
+            return new ErrorModel({}, 'id只能是数字', -999)
+        }
+        if (!id) {
+            return new ErrorModel({}, 'id不能为空', -999)
+        }
+        const {username} = req.session
+        const result = await delBlog(id, username)
+
         if (result.affectedRows > 0) {
             return new SuccessModel({}, '删除成功')
         } else {
-            return new ErrorModel('修改失败')
+            return new ErrorModel({}, '删除失败', -1)
         }
     }
 }

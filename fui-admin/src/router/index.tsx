@@ -4,7 +4,7 @@ import {
     // BrowserRouter, 
     Route, Switch, Redirect } from 'react-router-dom'
 // import Route from './PrivateRoute'
-import * as Cookies from 'js-cookie'
+// import * as Cookies from 'js-cookie'
 
 import App from 'src/App/App'
 import Layout from 'src/App/app-components/layout/layout'
@@ -55,9 +55,9 @@ import PermissionPage from 'src/pages/setting/permission'
 
 export default class ERouter extends React.Component<any, {}> {
     public componentWillMount() {
-        if(!Cookies.get('authorization')) {
-            window.location.href = '#/login'
-        }
+        // if(!Cookies.get('authorization')) {
+        //     window.location.href = '#/login'
+        // }
     }
     public render () {
         // const Router = process.env.NODE_ENV !== 'production' 

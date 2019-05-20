@@ -6,6 +6,8 @@
  *
  */
 import axios from 'axios'
+import createHistory from 'history/createHashHistory';
+const history = createHistory();
 // import appConfig from '../config/app-config'
 // service 默认配置
 let service: any
@@ -20,12 +22,13 @@ service = axios.create({
  * 错误处理
  */
 function handleErr(res: any) {
-	switch (res.messageCode) {
+	switch (res.code) {
 	case 301:
 		break
 	case 404:
 	case 405:
 	case 401:
+			history.push('/login')
 		break
 	default:
 		// Message({ type: 'error', message: res.message })
@@ -72,7 +75,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     (response: any) => {
 	const res = response.data
-	if (!res.success) {
+	if (!(res.code === 0)) {
 		handleErr(res)
 		return res
 	} else {

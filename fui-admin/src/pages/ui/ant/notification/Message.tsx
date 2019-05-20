@@ -20,6 +20,7 @@ class MessagePage extends React.Component {
             return
         }
         message[type](msg, duration)
+        
     }
 
     public render() {
