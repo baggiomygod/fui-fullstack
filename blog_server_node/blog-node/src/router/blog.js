@@ -17,9 +17,15 @@ const handleBlogRouter = async(req, res) => {
     const blogId = req.query.id || ''
 
     // 检验登录
-    const loginCheckResoult = loginCheck(req)
-    if (loginCheckResoult) {
-        return loginCheckResoult
+    // const loginCheckResoult = loginCheck(req)
+    // if (loginCheckResoult) {
+    //     return loginCheckResoult
+    // }
+
+    // get test 
+    if (method === 'GET' && path === '/taccweb/api/evaluation/query/question/list') {
+        const result = [1,2,3]
+        return new SuccessModel(result, '查询成功')
     }
 
     // 获取博客列表 

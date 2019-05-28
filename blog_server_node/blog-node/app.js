@@ -6,6 +6,7 @@ const querystring = require('querystring')
 const handleBlogRouter = require('./src/router/blog')
 const handleUserRouter = require('./src/router/user')
 const { redisSet, redisGet } = require('./src/db/redis')
+const {access} = require('./src/utils/log')
     // 获取cookie过期时间
 const getCookieExpires = () => {
         const date = new Date()
@@ -38,6 +39,15 @@ const getPostData = (req) => {
     return promise
 }
 const serverHandle = async(req, res) => {
+    // 记录 access log
+    console.log('process.env.NODE_ENV:', process.env.NODE_ENV)
+    // production
+    // process.env.NODE_ENV === 'production' && 
+    access(`
+        ${req.method} -- ${req.url} -- ${req.headers['user-agent']} -- ${Date.now()}
+    `)
+
+
     // 设置返回格式 JSON 
     res.setHeader('Content-Type', 'application/json')
         // cors 开发模式暂时采用反向代理解决跨域，不用nginx反向代理如何解决options 404问题？
@@ -90,7 +100,6 @@ const serverHandle = async(req, res) => {
             } else {
                 req.session = sessionData
             }
-            console.log('req.session:', req.session)
             return getPostData(req) // 解析post 参数
         })
         .then(async(postData) => {
@@ -98,7 +107,6 @@ const serverHandle = async(req, res) => {
                 // 处理user路由
             const userData = await handleUserRouter(req, res)
             if (userData) {
-                console.log('need set cookie:', needSetCookie, userData)
                 needSetCookie && res.setHeader('Set-Cookie', `userid=${userId}; path=/; httponly; expires=${getCookieExpires()}`)
                 res.end(JSON.stringify(userData))
                 return
