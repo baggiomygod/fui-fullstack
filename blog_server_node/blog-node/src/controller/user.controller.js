@@ -11,13 +11,7 @@ const login = (username, password) => {
         console.log(res)
     })
     return exec(sql)
-        // if (username === user.username && password === user.password) {
-        //     return true
-        // } else {
-        //     return false
-        // }
 }
-
 module.exports = {
     login
 }
