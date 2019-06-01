@@ -1,5 +1,5 @@
 
-// const targetProxy = 'http://127.0.0.1:8000' // yapi 'http://yapi.demo.qunar.com/mock/16864'
+// const targetProxy = 'http://yapi.demo.qunar.com/mock/16864'
 const nodeBlogService = 'http://127.0.0.1:8000' // bolg node
 const appConfig: any = {
     name: 'fui',

@@ -8,6 +8,9 @@ import Router from './router'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 
+// mooc
+import './mock'
+
 // window._ROUTER_ = this.props.history;
 
 // const store = configureStore()

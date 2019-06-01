@@ -6,10 +6,10 @@ import {Form} from 'antd'
 // const FormItem = Form.Item
 
 class FilterForm extends React.Component<any> {
-    public state = {}
-    constructor() {
-        super(props)
-    }
+    // public state = {}
+    // constructor() {
+    //     super(props)
+    // }
 
 }
 

@@ -12,6 +12,7 @@
     "history": "^4.7.2",
     "js-cookie": "^2.2.0",
     "jsonp": "^0.2.1",
+    "mockjs": "^1.0.1-beta3",
     "promise": "8.0.1",
     "react": "^16.4.2",
     "react-dom": "^16.6.3",
