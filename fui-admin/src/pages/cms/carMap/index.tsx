@@ -40,10 +40,11 @@ class BikeMapPage extends React.Component{
         this.renderDriving = this.renderDriving.bind(this)
         this.renderLushu = this.renderLushu.bind(this)
         this.formatePoints = this.formatePoints.bind(this)
-        
     }
     public componentDidMount() {
-        this.renderMap()
+        if (window.location.origin.indexOf('github.io') === -1) {
+            this.renderMap()
+        }
     }
     // 清除覆盖物
     public clearMap () {
@@ -162,7 +163,7 @@ class BikeMapPage extends React.Component{
                             </Col>
                         </Row>
                     </div>
-                    <div id="map-container" style={{height: 480}} />
+                    <div id="map-container" style={{height: 480}}>git page 不支持网络请求</div>
                 </Card>
             </div>
         )
