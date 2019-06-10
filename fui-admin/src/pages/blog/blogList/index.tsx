@@ -1,5 +1,7 @@
 import * as React from 'react';
-import {Table, Popconfirm, Card, message, Modal} from 'antd'
+import {Table, Popconfirm, Card, message, Button} from 'antd'
+import FilterForm from './FilterForm'
+import AddEditForm from './AddEditForm'
 import blogService from 'src/service/blog'
 import './index.less'
 interface IArticle {
@@ -9,18 +11,25 @@ interface IArticle {
     author?:string
 }
 interface IState {
+    name?: string,
     articleContent: IArticle
+    addEditVisible: boolean
+    addEditType: string
     list: any[]
     loading: boolean
     pagination: any
     articleVisible: boolean
 }
 class BlogPage extends React.Component{
+    public childRef:any = React.createRef();
     public state: IState = {
+        name: 'blog list',
         list: [],
         loading: false,
         pagination: {},
         articleVisible: false, // 文章详情visible
+        addEditVisible: false,
+        addEditType: 'add',
         articleContent: {
             title: '',
             content: '',
@@ -28,28 +37,39 @@ class BlogPage extends React.Component{
             author: ''
         } // 文章详情
     }
+    
+    public componentWillMount () {
+        // this.getTableData()
+    }
     public componentDidMount(){
-        this.getTableData()
+        // this.getTableData()
+    }
+     // 将子组件对象赋值给this.childRef
+     // 子组件this.props.onRef(this) this为子组件（这里的child）
+     public onChildRef = (child:any) => {
+        this.childRef = child
     }
     /**
      * 获取文章列表
      * @param res 
      */
-    public getTableData() {
-        // author keywords
-        blogService.getBlogList({})
-        .then((blogData:any) => {
-            if (blogData.code === 0) {
-                // const pagination:any = {...this.state.pagination}
-                // pagination.total = blogData.total
-                this.setState({
-                    list: blogData.data,
-                    loading: false,
-                    pagination: 10
-                })
-            }
-        }).catch((err:any) => {
-            console.log(err)
+    public getTableData(res: any) {
+        this.setState({
+            list: res.data
+        })
+    }
+    // 刷新列表
+    public refreshTable = () => {
+        this.childRef.fetchList()
+    }
+    /**
+     * 新增修改 保存文章
+     */
+    public saveBlog = (blogData: any) => {
+        this.setState({
+            addEditVisible: false
+        }, () => {
+            this.refreshTable()
         })
     }
     /**
@@ -60,9 +80,8 @@ class BlogPage extends React.Component{
     public handleDel(id:string) {
         blogService.delBlog({id})
         .then((res:any) => {
-            console.log('删除：', res)
             if (res.code === 0) {
-                // this.filterForm.requestList()
+                this.refreshTable()
                 message.success('删除成功')
             } else {
                 message.error('删除失败')
@@ -79,13 +98,12 @@ class BlogPage extends React.Component{
         this.setState({
             loading: true
         })
-        console.log('查看详情...')
         blogService.getBlogDetail({id})
         .then((res:any) => {
-            console.log(res)
             this.setState({
                 loading: false,
-                articleVisible: true,
+                addEditVisible: true,
+                addEditType: 'edit',
                 articleContent: res.data
             })
         })
@@ -101,14 +119,55 @@ class BlogPage extends React.Component{
             articleVisible: false
         })
     }
+
+    /**
+     * 新增弹框
+     */
+    public showAddEditDialog = () => {
+        this.setState({
+            addEditType: 'add',
+            addEditVisible: true
+        })
+    }
+    // hide add edit弹框
+    public hideAddEdit = () => {
+        this.setState({
+            addEditVisible: false
+        })
+    }
+    
     public render () {
-       
-        const { articleContent, articleVisible, pagination, list, loading } = this.state
+        const { 
+            articleContent,
+            pagination,
+            list,
+            loading,
+            addEditType,
+            addEditVisible
+        } = this.state
+        const bindPropFun = (listData: any[]) => {
+            this.setState({
+                loading: true
+            })
+            this.getTableData(listData)
+            this.setState({
+                loading: false
+            })
+        }
         // 表格列
         const columns = [
             {title: 'id', dataIndex: 'id'},
             {title: '标题', dataIndex: 'title'},
-            {title: '文章内容', dataIndex: 'content'},
+            {
+                title: '文章内容',
+                dataIndex: 'content',
+                render(contentStr: string){ // 反转义特殊符号
+                    let temp: any = document.createElement("div"); 
+                    temp.innerHTML = contentStr; 
+                    const output = temp.innerText || temp.textContent; 
+                    temp = null; 
+                    return output;
+             }},
             {title: '创建时间', dataIndex: 'createtime'},
             {title: '作者', dataIndex: 'author'},
             {
@@ -132,12 +191,12 @@ class BlogPage extends React.Component{
             }
         ]
         
-        
         return (
             <div className="blog-page-wrap">
                 <Card>
-                    form...
-                    {/* <FilterForm getTableData={bindPropFun} onRef={this.onFilterFormRef}/> */}
+                    <FilterForm getTableData={bindPropFun} onRef={this.onChildRef}>
+                        <Button type="primary" onClick={this.showAddEditDialog} icon="plus">新增</Button>
+                    </FilterForm>
                 </Card>
                 <Card className="content-wrap mt-10">
                     <Table
@@ -149,21 +208,11 @@ class BlogPage extends React.Component{
                         dataSource={list}
                     />
                 </Card>
-                <Modal title="文章详情"
-                        visible={articleVisible}
-                        onOk={this.handleOk}
-                        onCancel={this.hanldeCancel}
-                        okText="确认"
-                        cancelText="取消">
-                        <section>
-                        <h2>{articleContent.title}</h2>
-                        <p>{articleContent.content}</p>
-                        <div>
-                            <span>{articleContent.createtime}</span>
-                            <span>{articleContent.author}</span>
-                        </div>
-                        </section>
-                </Modal>
+                <AddEditForm saveBlog={this.saveBlog}
+                    visible={addEditVisible}
+                    addEditType={addEditType}
+                    hideDialog={this.hideAddEdit}
+                    content={articleContent} />
             </div>
         )
     }

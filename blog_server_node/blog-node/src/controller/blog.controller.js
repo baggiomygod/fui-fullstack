@@ -1,18 +1,20 @@
+const xss = require('xss')
 const {exec} = require('../db/mysql')
 /**
  * 获取列表
  * @param {*} author 
  * @param {*} keyword 
  */
-const getList = (author, keyword) => {
+const getList = (author, title) => {
     let sql = `select * from blogs where 1=1 ` // 1=1永远成立，防止后面没值报错
     if (author) {
         sql += `and author='${author}' `
     }
-    if (keyword) {
-        sql += `and title like '%${keyword}%'`
+    if (title) {
+        sql += `and title like '%${title}%'`
     }
     sql += `order by createtime desc;`
+    console.log('get list sql:', sql)
     return exec(sql)
 }
 /**
@@ -29,12 +31,11 @@ const getDetail = (id) => {
  */
 const createBlog = (blogData = {}) => {
     // blogData 是一个博客对象
-    console.log('blogData:', blogData)
     const {title, content, author} = blogData
     const createTime = Date.now()
     const sql = `
     insert into blogs (title, content, author, createtime) 
-    values ('${title}', '${content}', '${author}', '${createTime}')
+    values ('${xss(title)}', '${xss(content)}', '${xss(author)}', '${createTime}')
     `
     return exec(sql)
 }

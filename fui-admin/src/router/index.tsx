@@ -94,11 +94,11 @@ export default class ERouter extends React.Component<any, {}> {
                         {/* 博客 */}
                         <Route exact={true} path="/blog/list" component={BlogPage} />
 
-                        <Route exact={true} path="/ui/charts/bar" component={BarPage} />
-                        <Route exact={true} path="/ui/charts/pie" component={PiePage} />
-                        <Route exact={true} path="/ui/charts/line" component={LinePage} />
-                        <Route exact={true} path="/ui/charts/geo" component={GeoPage} />
-
+                        <Route exact={true} path="/datav/charts/bar" component={BarPage} />
+                        <Route exact={true} path="/datav/charts/pie" component={PiePage} />
+                        <Route exact={true} path="/datav/charts/line" component={LinePage} />
+                        <Route exact={true} path="/datav/charts/geo" component={GeoPage} />
+                        
                         <Route exact={true} path="/permission" component={PermissionPage} />
 
                         <Redirect to="/home" />

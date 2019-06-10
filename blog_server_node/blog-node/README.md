@@ -1,4 +1,4 @@
-# blog-node
+# blog-node （暂定：作为fui-apps博客展示的后端）
 ## 纯node开发博客CURD,登录，redis
 本项目采用纯node.js开发博客系统
 功能：

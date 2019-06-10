@@ -45,7 +45,9 @@ class LoginForm extends React.Component<IUserFormProps, any>{
                 <CanvasBg />
                 <Card bordered={false} className="login-card">
                 <Avatar className="avatar" size={64} src={userIcon} />
-                <Form onSubmit={this.handleSubmit} className="login-form">
+                <Form 
+                    onSubmit={this.handleSubmit}
+                    className="login-form">
                     <Form.Item>
                         {
                             getFieldDecorator('userName', {

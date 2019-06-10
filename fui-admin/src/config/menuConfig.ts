@@ -6,9 +6,54 @@ const MenuConfig: object[] = [
         icon: 'home'
     },
     {
+        title: '博客',
+        key: '/blog',
+        icon: 'edit',
+        children: [
+            {
+                title: '博客管理',
+                key: '/blog/list',
+                icon: 'file-markdown'
+            },
+        ]
+    },
+    {
+        title: '数据可视化',
+        key: 'datav',
+        icon: 'area-chart',
+        children: [
+                {
+                    title: '柱形图',
+                    key: '/datav/charts/bar',
+                    icon: 'bar-chart'
+                },
+                {
+                    title: '饼图',
+                    key: '/datav/charts/pie',
+                    icon: 'pie-chart'
+                },
+                {
+                    title: '折线图',
+                    key: '/datav/charts/line',
+                    icon: 'line-chart'
+                },
+                {
+                    title: 'geo地图',
+                    key: '/datav/charts/geo',
+                    icon: 'environment-o'
+                },
+            ]
+    },
+    {
+        title: 'we-eat',
+        key: '/eat',
+        icon: 'shop',
+        children: []
+    },
+    {
         title: 'UI',
         key: '/ui',
-        icon: 'copy',
+        icon: 'smile',
         children: [
             {
                 title: 'antd',
@@ -111,33 +156,7 @@ const MenuConfig: object[] = [
                         icon: 'table'
                     }
                 ]
-            },{
-                title: 'echarts',
-                key: '/ui/charts',
-                icon: 'area-chart',
-                children: [
-                    {
-                        title: '柱形图',
-                        key: '/ui/charts/bar',
-                        icon: 'bar-chart'
-                    },
-                    {
-                        title: '饼图',
-                        key: '/ui/charts/pie',
-                        icon: 'pie-chart'
-                    },
-                    {
-                        title: '折线图',
-                        key: '/ui/charts/line',
-                        icon: 'line-chart'
-                    },
-                    {
-                        title: 'geo地图',
-                        key: '/ui/charts/geo',
-                        icon: 'environment-o'
-                    },
-                ]
-            },
+            }
         ]
     },
     {
@@ -166,24 +185,6 @@ const MenuConfig: object[] = [
                 icon: 'car'
             },
         ]
-    },
-    {
-        title: '博客',
-        key: '/blog',
-        icon: 'appstore',
-        children: [
-            {
-                title: '博客管理',
-                key: '/blog/list',
-                icon: 'file-markdown'
-            },
-        ]
-    },
-    {
-        title: 'we-eat',
-        key: '/eat',
-        icon: 'shop',
-        children: []
     },
     {
         title: '权限设置',

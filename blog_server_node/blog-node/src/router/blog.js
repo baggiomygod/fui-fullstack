@@ -17,22 +17,17 @@ const handleBlogRouter = async(req, res) => {
     const blogId = req.query.id || ''
 
     // 检验登录
-    // const loginCheckResoult = loginCheck(req)
-    // if (loginCheckResoult) {
-    //     return loginCheckResoult
-    // }
-
-    // get test 
-    if (method === 'GET' && path === '/taccweb/api/evaluation/query/question/list') {
-        const result = [1,2,3]
-        return new SuccessModel(result, '查询成功')
+    const loginCheckResoult = loginCheck(req)
+    if (loginCheckResoult) {
+        return loginCheckResoult
     }
 
-    // 获取博客列表 
+
+    // 获取博客列表
     if (method === 'GET' && path === '/api/blog/list') {
         const author = req.query.author || ''
-        const keyword = req.query.keyword || ''
-        const result = await getList(author, keyword)
+        const title = req.query.title || ''
+        const result = await getList(author, title)
         return new SuccessModel(result, '查询成功')
     }
 
