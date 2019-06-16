@@ -8,6 +8,7 @@ const srcRoot = path.resolve(__dirname, '../src')
 const publicPath = path.resolve(__dirname, '../public')
 const pageDir = path.resolve(srcRoot, 'page') // 相对根目录page的绝对路径
 
+const appConfig = require('../app.config')
 // 判断是开发环境还是生产环境
 // process是node环境全局变量，所以无需使用require; process.env.NODE_ENV的值是什么时候设置的？
 const isDev = process.env.NODE_ENV === 'development';
@@ -46,7 +47,7 @@ const devServer = {
     },
     hot: true,
     open: true,
-    proxy: {},
+    proxy: appConfig.proxy,
     historyApiFallback: {
     }
 }
