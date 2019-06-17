@@ -5,10 +5,8 @@ var cookieParser = require('cookie-parser'); // 解析 cookie
 var logger = require('morgan'); // 日志
 
 // 引入路由
-var indexRouter = require('./routes/index');
 var blogRouter = require('./routes/blog');
 var userRouter = require('./routes/user');
-
 const servMockRouter = require('./routes/serv-tacc-admin')
 
 var app = express();
@@ -25,10 +23,12 @@ app.use(cookieParser()); // 解析cookie
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // 注册路由
-app.use('/', indexRouter);
-app.use('/api/user', userRouter)
 app.use('/api/blog', blogRouter)
+app.use('/api/user', userRouter)
+
+// tacc 测试接口
 app.use('/admin', servMockRouter)
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
