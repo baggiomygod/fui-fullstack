@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {ImgIcon} from 'src/fui'
 import {connect} from 'react-redux'
-import { doLogin } from 'src/pages/index/store/action/userAction'
+import { doLogin, loginTest } from 'src/pages/index/store/action/userAction'
 import './Login.styl'
 /**
  * @constructor <Home />
@@ -26,9 +26,12 @@ class Login extends React.Component<IProps> {
     public login = () => {
       const params = {
         username: 'admin',
-        password: '111'
+        password: '123456'
       }
       this.props.dispatch(doLogin(params))
+    }
+    public handleLoginTest = () => {
+      this.props.dispatch(loginTest())
     }
     public render () {
       const {userDetail} = this.state
@@ -47,6 +50,7 @@ class Login extends React.Component<IProps> {
                   </div>
                   <div className="login-btn">
                     <button onClick={this.login}>登录</button>
+                    <button onClick={this.handleLoginTest}>test</button>
                   </div>
                 {/* </form> */}
               </div>
@@ -57,5 +61,6 @@ class Login extends React.Component<IProps> {
 
 export default connect(
   (state: any) => ({
-    userInfo: state.userReducer.userInfo
+    userInfo: state.userReducer.userInfo,
+    loginTestData: state.userReducer.loginTestData
   }))(Login)

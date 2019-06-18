@@ -6,3 +6,4 @@ export const GET_ARTICLES = 'GET_ARTICLES'
 
 // 登录
 export const DO_LOGIN = 'DO_LOGIN'
+export const TEST_LOGIN = 'TEST_LOGIN'

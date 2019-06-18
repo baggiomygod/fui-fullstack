@@ -33,8 +33,6 @@ class ImgIcon extends React.Component<IconProps> {
     super(props)
   }
   public componentDidMount () {
-    console.log(this.props)
-    console.log(this.state)
     // console.log('defaultProps:', this.defaultProps)
     this.setScale()
   }

@@ -26,7 +26,7 @@ const fetchArticles = (state: any, action: any ) => {
     }
   } else {
     const list = state.articleList
-    return {...state, articleList: list.concat(action.data.json)}
+    return {...state, articleList: list.concat(action.data)}
   }
 }
 

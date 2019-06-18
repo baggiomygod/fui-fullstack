@@ -9,4 +9,8 @@ export default {
 	doLogin (data = {}) {
 		return Http({url: '/blog_h5/api/user/login', method: 'post', data})
   },
+  // 登录测试
+  loginTest(){
+		return Http({url: '/blog_h5/api/user/login-test', method: 'get', params: {}})
+  }
 }

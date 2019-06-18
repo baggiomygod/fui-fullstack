@@ -23,13 +23,13 @@ class List extends React.Component<IProps> {
 
   constructor(props: IProps) {
     super(props)
-    this.fetchList(this.page)
   }
   public componentWillMount () {
     this.listenerScroll()
   }
   public componentDidMount() {
-    console.log(this.props.articleList)
+    this.fetchList(this.page)
+    console.log('list:', this.props.articleList)
   }
   public componentWillUnmount () {
     window.removeEventListener('scroll', this.listenerScroll)
@@ -71,13 +71,20 @@ class List extends React.Component<IProps> {
   }
   public renderList () {
     const {articleList} = this.props
-    return articleList.map((item, index) => {
+    console.log('articleList:', articleList)
+    if (articleList.length > 0 && articleList[0]) {
+      return articleList.map((item, index) => {
+        return (
+          <li className="list-item" key={index}>
+            <ArticleCert data={item} />
+          </li>
+        )
+      })
+    } else {
       return (
-        <li className="list-item" key={index}>
-          <ArticleCert data={item} />
-        </li>
+        <li>无数据</li>
       )
-    })
+    }
   }
 
   public render() {

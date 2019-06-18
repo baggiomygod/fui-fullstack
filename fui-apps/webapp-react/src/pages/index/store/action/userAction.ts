@@ -14,3 +14,12 @@ export const doLogin = (params: ILogin) => async (dispatch: any) => {
     data: res.data
   })
 }
+// login-test
+export const loginTest = () => async (dispatch: any) => {
+  const res = await CommonService.loginTest()
+  console.log('login test:', res);
+  dispatch({
+    type: types.TEST_LOGIN,
+    data: res.data
+  })
+}
