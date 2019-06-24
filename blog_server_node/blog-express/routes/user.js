@@ -12,7 +12,7 @@ router.post('/login', async (req, res, next) => {
         res.json(new SuccessModel({}, '登录成功'))
         return
     }
-    res.json(new ErrorModel('登录失败'))
+    res.json(new ErrorModel({}, '登录失败'))
 });
 
 router.get('/login-test', (req, res, next) => {

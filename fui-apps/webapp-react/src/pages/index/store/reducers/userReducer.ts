@@ -2,15 +2,16 @@
 import * as types from '../actionTypes'
 
 const initState = {
-  userInfo: {},
+  loginRes: {},
   loginTestData: {}
 }
 
 const handleLogin = (state: any, action: any) => {
   if (action) {
+    console.log('handleLogin:', action)
     return {
       ...state,
-      userInfo: action.data
+      loginRes: action
     }
   }
 }

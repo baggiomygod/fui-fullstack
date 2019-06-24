@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 const { getList, getDetail, createBlog, updateBlog, delBlog } = require('../controller/blog.controller')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
-
+const loginCheck = require('../middleware/loginCheck')
 // 获取列表
 router.get('/list', async (req, res, next) => {
+    console.log('session data:', req.session)
+    console.log('session data:', req.session.username)
     const author = req.query.autor || ''
     const title = req.query.title || ''
     const result = await getList(author, title)
@@ -19,7 +21,7 @@ router.get('/detail', async (req, res, next) => {
 });
 
 // 新增
-router.post('/add', async (req, res, next) => {
+router.post('/add', loginCheck, async (req, res, next) => {
     // req.body.author = req.session.username
     console.log('add:', req.body)
     const data = await createBlog(req.body)
@@ -27,7 +29,7 @@ router.post('/add', async (req, res, next) => {
 });
 
 // 更新
-router.post('/update', async (req, res, next) => {
+router.post('/update', loginCheck, async (req, res, next) => {
     const blogData = req.body
     const result = await updateBlog(blogData.id, blogData)
     if (result.affectedRows > 0) {
@@ -42,7 +44,7 @@ router.post('/update', async (req, res, next) => {
 });
 
 // 删除
-router.post('/del', async (req, res, next) => {
+router.post('/del', loginCheck, async (req, res, next) => {
 
     const id = Number(req.body.id)
     if (!id) {

@@ -12,5 +12,8 @@ export default {
   // 登录测试
   loginTest(){
 		return Http({url: '/blog_h5/api/user/login-test', method: 'get', params: {}})
+  },
+  ListTest() {
+		return Http({url: '/blog_h5/api/blog/list', method: 'get', query: {}})
   }
 }

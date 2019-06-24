@@ -30,10 +30,23 @@ const fetchArticles = (state: any, action: any ) => {
   }
 }
 
+/**
+ * 新增文章
+ * @param state
+ * @param action
+ */
+const addArticle = (state: any, action: any) => {
+  console.log('add:', action)
+  if (action) {
+    return{
+      ...state
+    }
+  }
+}
 const articlesReducer = (state: any = initState, action: any) => {
   switch (action.type) {
     case types.GET_ARTICLES: return fetchArticles(state, action)
-
+    case types.ADD_ARTICLES: return addArticle(state, action)
     default: return state
   }
 }

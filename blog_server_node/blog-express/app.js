@@ -1,14 +1,14 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var fs = require('fs');
 var cookieParser = require('cookie-parser'); // 解析 cookie
 var logger = require('morgan'); // 日志
 const session = require('express-session')
-
+const ConnectRedis = require('connect-redis')(session)
 // 引入路由
 var blogRouter = require('./routes/blog');
 var userRouter = require('./routes/user');
-
 var app = express();
 
 // view engine setup
@@ -16,16 +16,31 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // 注册
-app.use(logger('dev')); // 日志
+const loggerOpt = process.env.NODE_ENV === 'development' ? 'dev' : 'combined';
+const logFileName = path.join(__dirname, 'log', 'access.log')
+const writeStream = fs.createWriteStream(logFileName, {
+  flags: 'a' // a: append
+});
+
+app.use(logger( loggerOpt, {
+  stream: loggerOpt === 'dev' ? process.stdout : writeStream
+})); // 日志
 app.use(express.json()); // content-type: json 格式
 app.use(express.urlencoded({ extended: false })); // 
 app.use(cookieParser()); // 解析cookie
+
+// redis
+const redisClient = require('./db/redis')
+const redisSessionStore = new ConnectRedis({
+  client: redisClient
+})
 app.use(session({
   secret: 'EwdsNl32_123#',
   cookie: {
     path: '/', // 默认 '/'
     httpOnly: true, // 禁止前端js操作cookie,只能后端操作
     maxAge: 24 * 60 * 60 * 1000, // 24h失效
+    store: redisSessionStore // session 存到redis中
   }
 }));
 
