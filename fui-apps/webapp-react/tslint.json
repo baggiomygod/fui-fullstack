@@ -6,7 +6,9 @@
     "object-literal-sort-keys": false,
     "no-var-requires": false,
     "no-angle-bracket-type-assertion": false,
-    "no-reference": false
+    "no-reference": false,
+    "member-ordering": false,
+    "member-access": false
   },
   "jsRules": {
     "object-literal-sort-keys": false

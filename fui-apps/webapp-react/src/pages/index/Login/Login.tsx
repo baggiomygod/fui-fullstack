@@ -59,16 +59,13 @@ class Login extends React.Component<IProps> {
         }
       })
     }
-    // 输入用户名
-    public usernameChange = (e: any) => {
+    // 表单输入发生改变时
+    public handleChange = (e: any) => {
+      const target = e.target
+      const value = target.value
+      const name = target.name
       this.setState({
-        username: e.target.value
-      })
-    }
-    // 输入密码
-    public passwordChange = (e: any) => {
-      this.setState({
-        password: e.target.value
+        [name]: value
       })
     }
     // test
@@ -95,14 +92,14 @@ class Login extends React.Component<IProps> {
                           name="username"
                           className="username-ipt f-input"
                           placeholder="用户名"
-                          onChange={this.usernameChange}/>
+                          onChange={this.handleChange}/>
                   </div>
                   <div className="form-item">
                     <input type="password"
                             name="password"
                             className="password-ipt f-input"
                             placeholder="密码"
-                            onChange={this.passwordChange}/>
+                            onChange={this.handleChange}/>
                   </div>
                   <div className="login-btn">
                     <button

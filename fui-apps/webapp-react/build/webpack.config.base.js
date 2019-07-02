@@ -8,7 +8,6 @@ const HTMLPlugin = require('html-webpack-plugin');
 const IndexJsFile = 'index.tsx'
 const { getEntry, getHtmlArray } = require('./utils')
 const entryMap = getEntry(pageDir, IndexJsFile)
-
 const isDev = process.env.NODE_ENV === 'development';
 
 const HTMLArray = getHtmlArray(entryMap, pageDir, HTMLPlugin)

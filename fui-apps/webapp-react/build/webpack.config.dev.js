@@ -33,10 +33,6 @@ const defaultPlugins = [
         tsconfig: path.resolve(__dirname, '../tsconfig.json'),
         tslint: path.resolve(__dirname, '../tslint.json'),
     }),
-    // pro
-    // new CopyWebpackPlugin([
-    //   { from: 'src/statics/js', to: path.resolve(__dirname, 'src/statics/js'), force: true }
-    // ]),
 ]
 const devServer = {
     contentBase: publicPath,
@@ -51,6 +47,7 @@ const devServer = {
     historyApiFallback: {
     }
 }
+
 const output = {
     path: publicPath, // dev时
     filename: '[name].[hash].min.js'

@@ -10,7 +10,7 @@ module.exports = {
                 let fullPathName = path.resolve(pageDir, pathname)
                 let stat = fs.statSync(fullPathName) // 判断文件 or  文件夹
                 let indexJs = path.resolve(fullPathName, IndexJsFile)
-                // fullPathName是文件夹 && 有index.js文件 
+                // fullPathName是文件夹 && 有index.js文件
                 if (stat.isDirectory() && fs.existsSync(indexJs)) {
                     entryMap[pathname] = indexJs // 设置每页页面的如何文件为：index.js
                 }
@@ -21,7 +21,7 @@ module.exports = {
         const htmlArray = []
         Object.keys(entryMap).forEach(key => {
             let fullPathName = path.resolve(pageDir, key)
-            let fileName = path.resolve(fullPathName, key + '.html') 
+            let fileName = path.resolve(fullPathName, key + '.html')
 
             if (fs.existsSync(fileName)) {
                 htmlArray.push(new HTMLPlugin({

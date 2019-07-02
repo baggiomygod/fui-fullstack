@@ -5,8 +5,6 @@ const { SuccessModel, ErrorModel } = require('../model/resModel')
 const loginCheck = require('../middleware/loginCheck')
 // 获取列表
 router.get('/list', async (req, res, next) => {
-    console.log('session data:', req.session)
-    console.log('session data:', req.session.username)
     const author = req.query.autor || ''
     const title = req.query.title || ''
     const result = await getList(author, title)
