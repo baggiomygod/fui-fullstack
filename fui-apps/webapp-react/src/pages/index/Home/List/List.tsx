@@ -29,7 +29,6 @@ class List extends React.Component<IProps> {
   }
   public componentDidMount() {
     this.fetchList(this.page)
-    console.log('list:', this.props.articleList)
   }
   public componentWillUnmount () {
     window.removeEventListener('scroll', this.listenerScroll)
@@ -71,7 +70,6 @@ class List extends React.Component<IProps> {
   }
   public renderList () {
     const {articleList} = this.props
-    console.log('articleList:', articleList)
     if (articleList.length > 0 && articleList[0]) {
       return articleList.map((item, index) => {
         return (

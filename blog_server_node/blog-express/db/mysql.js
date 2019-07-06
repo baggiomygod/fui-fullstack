@@ -1,6 +1,6 @@
 const mysql = require('mysql')
 const {MYSQL_CONF} = require('../conf/db')
-
+const { ObjectKeysCamelCase } = require('../utils/formatUtils')
 // 创建连接对象
 const connect = mysql.createConnection(MYSQL_CONF)
 
@@ -15,6 +15,12 @@ function exec(sql) {
                 reject(err)
                 return
             }
+            // resolve(ObjectKeysCamelCase(result))
+            result.forEach(item => {
+                item.create_time = new Date(item.create_time).toJSON('yyyy-MM-dd')
+                item.update_time = new Date(item.update_time).toJSON('yyyy-MM-dd')
+            })
+            console.log(result)
             resolve(result)
         })
     })

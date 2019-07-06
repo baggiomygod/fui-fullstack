@@ -60,7 +60,7 @@ const mapStateToProps = (state: any) => ({
   tabs: state.tabReducer.tabs,
   activeTab: state.tabReducer.activeTab,
 })
-export default withRouter<any>(
+export default withRouter<any, any>(
   connect(
     mapStateToProps
   )(BottomBar)

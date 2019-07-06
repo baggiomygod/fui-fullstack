@@ -6,9 +6,13 @@ var cookieParser = require('cookie-parser'); // 解析 cookie
 var logger = require('morgan'); // 日志
 const session = require('express-session')
 const ConnectRedis = require('connect-redis')(session)
+
+// 全局添加Date方法
+require('./utils/dateFormate')
 // 引入路由
 var blogRouter = require('./routes/blog');
 var userRouter = require('./routes/user');
+// var indexRouter = require('./routes');
 var app = express();
 
 // view engine setup
@@ -47,6 +51,7 @@ app.use(session({
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // 注册路由
+// app.use('', indexRouter)
 app.use('/api/blog', blogRouter)
 app.use('/api/user', userRouter)
 

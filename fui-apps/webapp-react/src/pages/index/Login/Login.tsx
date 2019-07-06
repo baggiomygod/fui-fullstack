@@ -29,6 +29,9 @@ class Login extends React.Component<IProps> {
     constructor (props: any) {
         super(props)
     }
+    // componentWillMount() {
+
+    // },
     public handleSubmit = () => {
       console.log('submit...')
     }
@@ -36,7 +39,6 @@ class Login extends React.Component<IProps> {
       const { username, password } = this.state
       // 校验
       if (!username || !password) {
-        console.log('请输入...')
         return
       }
 
@@ -46,7 +48,7 @@ class Login extends React.Component<IProps> {
       }
       // dispatch 能否异步拿到返回值
       const res = await this.props.dispatch(doLogin(params))
-          console.log('login dispatch:', res)
+      console.log('login dispatch:', res)
       const { history } = this.props
       // history.push('home')
       history.push({pathname: '/home'})

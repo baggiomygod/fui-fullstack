@@ -19,6 +19,7 @@ export const doLogin = (params: ILogin) => async (dispatch: any) => {
   }
 
 }
+
 // login-test
 export const loginTest = () => async (dispatch: any) => {
   const res = await CommonService.loginTest()

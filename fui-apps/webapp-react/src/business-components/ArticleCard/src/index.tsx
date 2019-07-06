@@ -13,7 +13,10 @@ interface IArticleItem {
   avatar?: string
   img?: string
   description: string
+  content: string
   title: string
+  update_time?: string
+  create_time?: string
   niceCount?: number | string
   commentCount?: number | string
 }
@@ -50,10 +53,11 @@ class ArticleCert extends React.Component<IProps> {
             {data.title}
             </a>
           </h4>
-          <p className="text">{data.description}</p>
+          <p className="text">{data.content}</p>
         </dd>
 
         <dd className="cart-footer">
+          <span className="text">{ data.update_time ? data.update_time : data.create_time}</span>
           <span className="icon iconfont icon-nice">{data.niceCount}</span>
           <span className="icon iconfont icon-talk-line">{data.commentCount}</span>
         </dd>

@@ -87,13 +87,12 @@ const config = {
     // webpack4: 代替CommonsChunkPlugin
     optimization: {
         splitChunks:{
-            cacheGroups:{
-                common: {
+          cacheGroups:{
+            commons: {
                     test: /[\\/]node_modules[\\/]/,
                     chunks: 'all',
                     name: 'vendor'
-                }
-
+              },
             }
         }
     }

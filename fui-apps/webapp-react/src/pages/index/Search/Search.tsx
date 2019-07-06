@@ -58,4 +58,4 @@ class Search extends React.Component<IProps> {
 }
 
 // export default Search
-export default withRouter<any>(connect()(Search))
+export default withRouter<any, any>(connect()(Search))

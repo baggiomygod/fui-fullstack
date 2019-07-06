@@ -5,23 +5,23 @@ import './index.styl'
  * @constructor <Header />
  * @description Header
  */
-interface IconProps {
+interface IIconProps {
   src?: string
   size?: 'large' | 'small' | 'default' | number
   shape?: 'circle' | 'square'
   iconText?: string
 }
-interface IconState {
+interface IIconState {
   scale: number;
   isImgExist: boolean;
 }
 /*
  * public private protected static 区别？
  */
-class ImgIcon extends React.Component<IconProps> {
+class ImgIcon extends React.Component<IIconProps> {
   // public defaultProps = {
-  //   shape: 'circle' as IconProps['shape'],
-  //   size: 'default' as IconProps['size'],
+  //   shape: 'circle' as IIconProps['shape'],
+  //   size: 'default' as IIconProps['size'],
   // };
   public state = {
     scale: 1,
@@ -29,14 +29,14 @@ class ImgIcon extends React.Component<IconProps> {
   };
   private iconChildren: any
 
-  constructor(props: IconProps) {
+  constructor(props: IIconProps) {
     super(props)
   }
   public componentDidMount () {
     // console.log('defaultProps:', this.defaultProps)
     this.setScale()
   }
-  public componentDidUpdate (prevProps: IconProps, prevState: IconState) {
+  public componentDidUpdate (prevProps: IIconProps, prevState: IIconState) {
     // ...
   }
   public setScale = () => {

@@ -50,7 +50,7 @@ const devServer = {
 
 const output = {
     path: publicPath, // dev时
-    filename: '[name].[hash].min.js'
+    filename: '[name].[hash].min.js',
 }
 
 const config = merge(webpackBaseConfig, {

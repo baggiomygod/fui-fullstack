@@ -42,4 +42,4 @@ interface IPorps {
   }
  }
 
-export default withRouter<any>(connect()(EditModal))
+export default withRouter<any, any>(connect()(EditModal))

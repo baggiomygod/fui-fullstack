@@ -44,4 +44,4 @@ class Main extends React.Component<IProps> {
     }
 }
 
-export default withRouter<any>(connect()(Main))
+export default withRouter<any, any>(connect()(Main))

@@ -13,7 +13,7 @@ const getList = (author, title) => {
     if (title) {
         sql += `and title like '%${title}%'`
     }
-    sql += `order by createtime desc;`
+    sql += `order by create_time desc;`
     console.log('get list sql:', sql)
     return exec(sql)
 }
@@ -53,6 +53,8 @@ const updateBlog = (id, blogData = {}) => {
     updateSql += title ? `title='${title}',` : '' 
     updateSql += content ? `content='${content}',` : '' 
     updateSql += author ? `author='${author}',` : '' 
+    updateSql += updatetime ? `update_time='${updatetime}',` : '' 
+
     const sql = `
         update blogs set ${updateSql.substring(0, updateSql.length - 1)} where id=${id}
     `
