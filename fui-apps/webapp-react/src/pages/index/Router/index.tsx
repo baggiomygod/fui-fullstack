@@ -8,6 +8,8 @@ import Search from '../Search/Search';
 import Layout from '../Layout';
 import CreateArticle from '../CreateArticle/CreateArticle';
 
+// Hooks
+import ArticleDetail from '../ArticleDetail'
 interface IProps {
     dispatch?: any
 }
@@ -24,6 +26,7 @@ class Main extends React.Component<IProps> {
           <Layout>
               <Route exact={true} path="/home" component={Home} />
               <Route exact={true} path="/user" component={My} />
+              <Route exact={true} path="/article_detail" component={ArticleDetail} />
           </Layout>
         )
         // common

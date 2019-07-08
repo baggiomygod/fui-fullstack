@@ -10,6 +10,7 @@ import * as types from '../actionTypes'
 // }
 const initState = {
   articleList: [],
+  articleData: {}
 }
 
 /**
@@ -31,6 +32,19 @@ const fetchArticles = (state: any, action: any ) => {
 }
 
 /**
+ * 获取文章详情
+ * @param state
+ * @param action
+ */
+const fetchArticleDetail = (state: any, action: any) => {
+  console.log('fetchArticleDetail....:', state, action)
+  return {
+    ...state,
+    articleData: action.data,
+  }
+}
+
+/**
  * 新增文章
  * @param state
  * @param action
@@ -47,6 +61,7 @@ const articlesReducer = (state: any = initState, action: any) => {
   switch (action.type) {
     case types.GET_ARTICLES: return fetchArticles(state, action)
     case types.ADD_ARTICLES: return addArticle(state, action)
+    case types.GET_ARTICLE_DETAIL: return fetchArticleDetail(state, action)
     default: return state
   }
 }

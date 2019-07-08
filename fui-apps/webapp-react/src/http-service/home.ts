@@ -8,7 +8,14 @@ export default {
    */
 	getArticles (query = {}) {
 		return Http({url:'/blog_h5/api/blog/list', method: 'get', params: query})
-	},
+  },
+  /**
+   * 获取文章详情
+   * @param query
+   */
+  getArticleDetail (query = {}) {
+		return Http({url:'/blog_h5/api/blog/detail', method: 'get', params: query})
+  },
   /**
    * 修改文章
    * @param {*} data

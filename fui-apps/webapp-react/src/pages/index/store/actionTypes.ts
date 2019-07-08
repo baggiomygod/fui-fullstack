@@ -3,6 +3,7 @@ export const ADD_TODO = 'ADD_TODO'
 export const CHANGE_TABS = 'CHANGE_TABS'
 
 export const GET_ARTICLES = 'GET_ARTICLES'
+export const GET_ARTICLE_DETAIL = 'GET_ARTICLE_DETAIL'
 export const ADD_ARTICLES = 'ADD_ARTICLES'
 
 // 登录

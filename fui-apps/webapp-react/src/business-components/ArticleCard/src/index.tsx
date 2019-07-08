@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {ImgIcon} from 'src/fui'
+import { withRouter } from 'react-router-dom';
 
 import './index.styl'
 
@@ -9,6 +10,7 @@ const defaultImg = require('./img/namucuo.jpeg')
  * @description Header
  */
 interface IArticleItem {
+  id: string | number
   author: string
   avatar?: string
   img?: string
@@ -22,6 +24,7 @@ interface IArticleItem {
 }
 interface IProps {
   data: IArticleItem
+  history: any
 }
 class ArticleCert extends React.Component<IProps> {
   public state = {
@@ -29,6 +32,17 @@ class ArticleCert extends React.Component<IProps> {
   }
   constructor(props: IProps) {
     super(props)
+  }
+  public viewDetail = (e: any) => {
+    e.preventDefault()
+    const { history } = this.props
+    const option = {
+      pathname: '/article_detail',
+      query: { id: this.props.data.id }
+    }
+    // console.log('options:', option)
+    history.push(option)
+    // history.pushState({id: 20}, '详情', '/article_detail')
   }
   /* 渲染列表 */
   public renderCard = () => {
@@ -44,18 +58,17 @@ class ArticleCert extends React.Component<IProps> {
                       shape="circle" />
           <div className="author">{data.author}</div>
         </dt>
+        <div onClick={this.viewDetail}>
         <dd className="article-img-wrap">
           <a className="article-img" style={imgStyle} />
         </dd>
         <dd className="article-info">
           <h4 className="title">
-            <a href="">
             {data.title}
-            </a>
           </h4>
           <p className="text">{data.content}</p>
         </dd>
-
+        </div>
         <dd className="cart-footer">
           <span className="text">{ data.update_time ? data.update_time : data.create_time}</span>
           <span className="icon iconfont icon-nice">{data.niceCount}</span>
@@ -73,4 +86,4 @@ class ArticleCert extends React.Component<IProps> {
   }
 }
 
-export default ArticleCert
+export default withRouter<any, any>(ArticleCert)
