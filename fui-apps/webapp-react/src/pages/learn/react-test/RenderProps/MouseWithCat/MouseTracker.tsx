@@ -3,7 +3,7 @@ import Mouse from './Mouse'
 import Cat from './Cat'
 // import Dog from './Dog'
 class MouseTracker extends React.Component {
-  render() {
+  public render() {
     // 这里的mmouse:any 值是Mouse组件中:{this.props.render(this.state)}
     const renderMouseCat = (mouse:any) => (
       <Cat mouse={mouse} />

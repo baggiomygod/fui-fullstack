@@ -5,7 +5,7 @@ interface IProp{
   name: string
 }
 class Greeting extends React.Component<IProp> {
-  render() {
+  public render() {
     return (
       <h1>hello, {this.props.name}</h1>
     )

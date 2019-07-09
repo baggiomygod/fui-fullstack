@@ -3,10 +3,10 @@
  */
 import * as React from 'react'
 
- function useReducer(reducer, initailState) {
+ function useReducer(reducer: any, initailState: any) {
    const [state, setState] = React.useState(initailState)
 
-   function dispatch(action) {
+   function dispatch(action: any) {
      const nextState = reducer(state, action)
      setState(nextState)
    }

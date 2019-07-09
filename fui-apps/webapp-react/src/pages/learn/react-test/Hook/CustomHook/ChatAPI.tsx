@@ -1,4 +1,3 @@
-const ids = [1,2,3]
 export default {
   // 订阅
   subscribeToFriendStatus(id: string, callback: any) {

@@ -22,7 +22,7 @@ class MouseTracker extends React.Component<IProps> {
       y: event.clientY
     });
   }
-  render() {
+  public render() {
     return (
       <div style={{height: '100%'}} onMouseMove={this.handleMouseMove}>
         {this.props.render(this.state)}

@@ -1,4 +1,11 @@
 import * as React from 'react'
+
+import Export from './export'
+import * as Export2 from './export'
+
+console.log('import:', Export)
+console.log('import * as:', Export2)
+
 interface IProps{
   // getDerivedStateFromError: any
   name?: string
@@ -12,7 +19,7 @@ class ErrorBoundary extends React.Component<IProps>{
     super(props)
     // this.state = { hasError: false }
   }
-  static getDerivedStateFromError() {
+  public getDerivedStateFromError() {
     return { hasError: true }
   }
 

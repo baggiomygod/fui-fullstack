@@ -1,6 +1,6 @@
 import * as React from 'react'
 class Test extends React.Component<any> {
-  render() {
+  public render() {
     return (
       <div>
         test:

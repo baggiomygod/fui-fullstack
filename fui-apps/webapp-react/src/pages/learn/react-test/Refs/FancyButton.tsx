@@ -10,7 +10,7 @@ class FancyButton extends React.Component<any>{
   public focus() {
     console.log('btn fouus')
   }
-  componentDidMount() {
+  public componentDidMount() {
     this.setT()
   }
   public setT = () => {
@@ -21,7 +21,7 @@ class FancyButton extends React.Component<any>{
         }))
       }, 1000)
   }
-  render () {
+  public render () {
     const count = this.state.count
     return (
       <div>

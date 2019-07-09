@@ -3,7 +3,7 @@ interface IProps{
   mouse: any
 }
 class Cat extends React.Component<IProps>{
-  render() {
+  public render() {
     const mouse = this.props.mouse
     return (
       <span style={

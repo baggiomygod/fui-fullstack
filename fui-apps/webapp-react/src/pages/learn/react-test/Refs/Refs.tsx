@@ -9,7 +9,7 @@ class RefsTest extends React.Component<IPorps>{
   constructor(props: IPorps) {
     super(props)
   }
-  componentDidMount () {
+  public componentDidMount () {
     console.log('myRef:', this.myRef)
   }
   public render() {

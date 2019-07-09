@@ -1,11 +1,13 @@
-import { useReducer } from "react";
+// import { useReducer } from "react";
 
-function Todos() {
-  const [todos, dispatch] = useReducer(todosReducer, [])
-  function handleAddClick(text) {
-    dispatch({
-      type: 'add',
-      text
-    })
-  }
-}
+// function Todos() {
+//   const [todos, dispatch] = useReducer(todosReducer, [])
+//   function handleAddClick(text) {
+//     dispatch({
+//       type: 'add',
+//       text
+//     })
+//   }
+// }
+
+// export default Todos

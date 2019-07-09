@@ -11,14 +11,14 @@ function logProps(Component: any) {
     constructor(props: any){
       super(props)
     }
-    componentDidUpdate(prevProps: any) {
+    public componentDidUpdate(prevProps: any) {
       console.log('old props:', prevProps);
       console.log('new props:', this.props);
     }
-    componentDidMounte() {
+    public componentDidMounte() {
       console.log('new props:', this.props);
     }
-    render() {
+    public render() {
       const { forwardedRef, ...rest } = this.props
       return <Component ref={forwardedRef} {...rest} />;
       // return <Component {...this.props} />;

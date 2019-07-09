@@ -10,6 +10,7 @@
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.pro.js"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.9",
     "@types/node": "^10.12.18",
     "@types/prop-types": "^15.7.1",
     "@types/react": "16.8.23",

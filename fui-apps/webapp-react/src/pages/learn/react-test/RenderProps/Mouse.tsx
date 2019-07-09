@@ -6,7 +6,7 @@ class Mouse extends React.Component<any> {
     x: 'testx',
     y: 'testy',
   }
-  render() {
+  public render() {
     return (
       <div>
         <h1>mouse</h1>

@@ -16,7 +16,7 @@ class CallbackRefs extends React.Component<any>{
   constructor(props: any) {
     super(props)
   }
-  componentDidMount() {
+  public componentDidMount() {
     // 1. 组件挂载时调用
     this.focusTextInput()
   }
