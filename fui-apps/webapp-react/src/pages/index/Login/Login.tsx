@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {ImgIcon} from 'src/fui'
 import {connect} from 'react-redux'
-import { doLogin, loginTest, ListTest } from 'src/pages/index/store/action/userAction'
+import { doLogin } from 'src/pages/index/store/action/userAction'
 import './Login.styl'
 /**
  * @constructor <Home />
@@ -9,6 +9,7 @@ import './Login.styl'
  */
 interface IProps {
   history: any
+  subscripe: any
   dispatch: any
   test?: string
   loginRes: any
@@ -48,6 +49,8 @@ class Login extends React.Component<IProps> {
       }
       // dispatch 能否异步拿到返回值
       const res = await this.props.dispatch(doLogin(params))
+      // this.props.subscripe(() => console.log(this.props))
+
       console.log('login dispatch:', res)
       const { history } = this.props
       // history.push('home')
@@ -69,13 +72,6 @@ class Login extends React.Component<IProps> {
       this.setState({
         [name]: value
       })
-    }
-    // test
-    public handleLoginTest = () => {
-      this.props.dispatch(loginTest())
-    }
-    public handleBlogListTest = () => {
-      this.props.dispatch(ListTest())
     }
 
     public render () {
@@ -111,8 +107,6 @@ class Login extends React.Component<IProps> {
                   </div>
                 </form>
               </div>
-                <button onClick={this.handleLoginTest}>test</button>
-                <button onClick={this.handleBlogListTest}>list test</button>
             </div>
         )
     }

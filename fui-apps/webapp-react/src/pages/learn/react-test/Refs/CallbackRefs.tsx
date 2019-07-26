@@ -2,11 +2,13 @@ import * as React from 'react'
 
 class CallbackRefs extends React.Component<any>{
   public textInput:any = null
+
+  // 这个方法传入绑定的元素，赋值给textInput
   public setTextInputRef = (element: any) => {
     console.log('ele:', element)
     this.textInput = element
   }
-  //
+
   public focusTextInput = () => {
     console.log('textinput:', this.textInput)
     if (this.textInput) {
