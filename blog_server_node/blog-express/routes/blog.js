@@ -8,6 +8,10 @@ router.get('/list', async (req, res, next) => {
     const author = req.query.autor || ''
     const title = req.query.title || ''
     const result = await getList(author, title)
+    result.forEach(item => {
+                item.create_time = new Date(item.create_time).toJSON('yyyy-MM-dd')
+                item.update_time = new Date(item.update_time).toJSON('yyyy-MM-dd')
+            })
     res.json(new SuccessModel(result, '查询成功'))
 });
 
@@ -21,7 +25,6 @@ router.get('/detail', async (req, res, next) => {
 // 新增
 router.post('/add', loginCheck, async (req, res, next) => {
     // req.body.author = req.session.username
-    console.log('add:', req.body)
     const data = await createBlog(req.body)
     res.json(new SuccessModel({ id: data.insertId }, '创建成功'))
 });

@@ -6,11 +6,13 @@ interface IPorps {
 class RefsTest extends React.Component<IPorps>{
   // 1. 通过React.createRef创建一个React ref，并赋值给myRef变量
   public myRef:any = React.createRef()
+  public methodRef: any
   constructor(props: IPorps) {
     super(props)
   }
   public componentDidMount () {
     console.log('myRef:', this.myRef)
+    console.log('method ref:', this.methodRef)
   }
   public render() {
     // 3. react传递myRef给forwardRef(props, refs)内函数，作为第二个参数
@@ -21,10 +23,13 @@ class RefsTest extends React.Component<IPorps>{
         {props.children}
       </button>
     ))
+
+    const methodRef = (ele:any) => this.methodRef = ele
     return (
       <div>
         {/* 2. 通过ref属性将 myRef向下传递下去*/}
         <FacyButton ref={this.myRef}>Click!!</FacyButton>
+        <div ref={methodRef}>method ref</div>
       </div>
     )
   }

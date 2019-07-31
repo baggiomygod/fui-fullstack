@@ -34,7 +34,7 @@ const createBlog = (blogData = {}) => {
     const {title, content, author} = blogData
     const createTime = Date.now()
     const sql = `
-    insert into blogs (title, content, author, createtime) 
+    insert into blogs (title, content, author, create_time) 
     values ('${xss(title)}', '${xss(content)}', '${xss(author)}', '${createTime}')
     `
     return exec(sql)

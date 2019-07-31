@@ -1,10 +1,13 @@
 import * as React from 'react'
+// import { withRouter } from "react-router-dom";
+// import { RouteComponentProps } from 'react-router-dom'
 import './index.less'
 
 interface IProps {
-    match?: any
+    id?: string
+    match?: string
 }
-export default class Home extends React.Component<IProps> {
+class Home extends React.Component<IProps> {
     constructor(props:IProps) {
         super(props)
     }
@@ -20,3 +23,5 @@ export default class Home extends React.Component<IProps> {
         )
     }
 }
+
+export default Home

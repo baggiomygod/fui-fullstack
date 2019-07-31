@@ -15,12 +15,7 @@ function exec(sql) {
                 reject(err)
                 return
             }
-            // resolve(ObjectKeysCamelCase(result))
-            result.forEach(item => {
-                item.create_time = new Date(item.create_time).toJSON('yyyy-MM-dd')
-                item.update_time = new Date(item.update_time).toJSON('yyyy-MM-dd')
-            })
-            console.log(result)
+            
             resolve(result)
         })
     })
