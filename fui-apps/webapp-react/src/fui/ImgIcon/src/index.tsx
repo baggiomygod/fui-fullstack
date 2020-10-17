@@ -53,7 +53,7 @@ class ImgIcon extends React.Component<IIconProps> {
       break
       case 'small': textStyle = {fontSize: 18}
       break
-      case 'large': textStyle = {fontSize: 32}
+      case 'large': textStyle = {fontSize: 44}
       break
       default:
       break

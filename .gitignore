@@ -6,6 +6,9 @@ node_modules/
 # testing
 coverage/
 
+# 大屏demo
+screen_data_vis/
+
 # production
 # misc
 .DS_Store

@@ -38,6 +38,7 @@ const devServer = {
     contentBase: publicPath,
     port: 8083,
     host: '0.0.0.0',
+    disableHostCheck: true,
     overlay: {
         errors: true
     },

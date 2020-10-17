@@ -18,10 +18,9 @@ export default class Axios {
     public domain:string
     public chain:any
     constructor(
-        config: any = {proxy_target: 'http://localhost:8000'}, 
+        config: any = {proxy_target: 'http://localhost:8010'}, 
         chain = (data:any) => data 
     ) {
-        console.log('axios:', config)
         this.domain = config.proxy_target
         this.chain = chain
     }

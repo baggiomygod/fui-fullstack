@@ -12,9 +12,10 @@ interface ICategoryProps {
   label: string
   iconUrl: string
   key: string
-  text?: string
+  text?: string,
+  url?: string | undefined
 }
-class Category extends React.Component {
+class Category extends React.Component<any> {
   public state = {
     categoryList: []
   }
@@ -23,19 +24,22 @@ class Category extends React.Component {
   }
   public componentWillMount () {
     const list = [
-      {label: '摄影', iconUrl: FuiIcon2x, key: 'photo', text: ''},
+      {label: '摄影', iconUrl: '', key: 'photo', text: 'C'},
       {label: '前端', iconUrl: FuiIcon2x, key: 'web', text: ''},
       {label: '足球', iconUrl: FuiIcon2x, key: 'ball', text: ''},
-      {label: '旅行', iconUrl: '', key: 'travel', text: 'T'},
+      {label: 'todo', iconUrl: '', key: 'travel', text: 'T', url: '/todolist'},
     ]
    this.setState({
     categoryList: list
    })
   }
+  public goPage = (url: string | undefined) => {
+      this.props.history.push(url)
+  }
   public renderCategories () {
     return this.state.categoryList.map((item: ICategoryProps) => {
       return (
-        <div className="category-item" key={item.key}>
+        <div className="category-item" key={item.key} onClick={this.goPage.bind(this, item.url)} >
           <ImgIcon src={item.iconUrl}
                     size={'large'}
                     shape="circle"

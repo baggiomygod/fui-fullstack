@@ -1,8 +1,9 @@
 import Mock from 'mockjs'
-// const config = require('../app-config')
+const config = require('../config/app-config')
 import cmsMock from './mooc'
 import blogMock from './blog'
-const config = { mock: true }
+
+window.gitReview = config.gitReview
 if (config.mock) {
     Mock.setup({ timeout: 2000 })
     cmsMock()

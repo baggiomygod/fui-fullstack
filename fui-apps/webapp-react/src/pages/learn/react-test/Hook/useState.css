@@ -1,0 +1,7 @@
+/* .container{
+  color: #fff
+} */
+
+:local(.container){
+  color: #fff
+}

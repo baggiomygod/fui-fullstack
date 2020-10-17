@@ -84,15 +84,18 @@ const serverHandle = async(req, res) => {
     let needSetCookie = false
     let userId = req.cookie.userid
 
+    // 根据日期和随机数创建一个userId，用于req.sessionId和redis.userId
     if (!userId) {
         needSetCookie = true
         userId = `${Date.now()}_${Math.random()}`
-            // 初始化redis中的 session值
+        // 初始化redis中的 session值
         redisSet(userId, {})
     }
     req.sessionId = userId
-        // 获取session
-    redisGet(req.sessionId).then(sessionData => {
+
+    // 获取session
+    redisGet(req.sessionId)
+    .then(sessionData => {
             if (sessionData === null) {
                 redisSet(req.sessionId, {})
                     //设置session

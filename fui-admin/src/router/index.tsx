@@ -3,7 +3,7 @@ import {
     HashRouter, 
     // BrowserRouter, 
     Route, Switch, Redirect } from 'react-router-dom'
-// import Route from './PrivateRoute'
+import PrivateRoute from './PrivateRoute'
 // import * as Cookies from 'js-cookie'
 
 import App from 'src/App/App'
@@ -43,6 +43,7 @@ import TeamPage from 'src/pages/cms/team'
 
 // blog
 import BlogPage from 'src/pages/blog/blogList'
+import FileUpload from 'src/pages/blog/upload'
 
 // echarts
 import BarPage from 'src/pages/ui/echarts/bar'
@@ -93,7 +94,10 @@ export default class ERouter extends React.Component<any, {}> {
                         
                         {/* 博客 */}
                         <Route exact={true} path="/blog/list" component={BlogPage} />
-
+                        <Route exact={true} path="/blog/upload" component={FileUpload} />
+                        {/* 权限列表 */}
+                        <PrivateRoute exact={true} path="/blog/premission_list" component={BlogPage} />
+                        
                         <Route exact={true} path="/datav/charts/bar" component={BarPage} />
                         <Route exact={true} path="/datav/charts/pie" component={PiePage} />
                         <Route exact={true} path="/datav/charts/line" component={LinePage} />

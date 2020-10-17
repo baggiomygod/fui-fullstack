@@ -4,7 +4,14 @@
     "ordered-imports": false,
     "no-console": [false],
     "object-literal-sort-keys": false,
-    "no-var-requires": false
+    "no-var-requires": false,
+    "no-angle-bracket-type-assertion": false,
+    "no-reference": false,
+    "member-ordering": false,
+    "member-access": true,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "jsx-no-lambda": false
   },
   "jsRules": {  
     "object-literal-sort-keys": false  
@@ -12,7 +19,10 @@
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
-      "node_modules/**/*.ts"
+      "node_modules/**/*.ts",
+      "build/**/*.js",
+      "public/lib/**/*.js",
+      "src/lib/**/*.js"
     ]
   }
 }

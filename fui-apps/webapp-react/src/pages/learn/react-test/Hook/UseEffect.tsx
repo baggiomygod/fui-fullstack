@@ -14,7 +14,7 @@ const { useState, useEffect } = React
 function EffectHookExample() {
   const [count, setCount] = useState(0)
 
-  // componentDidMount componentDidUpdate
+  // componentDidMount componentDidUpdate是调用
   useEffect(() => {
     console.log(document.getElementById('title'))
   })

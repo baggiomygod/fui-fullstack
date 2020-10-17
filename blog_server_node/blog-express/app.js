@@ -10,9 +10,14 @@ const ConnectRedis = require('connect-redis')(session)
 // 全局添加Date方法
 require('./utils/dateFormate')
 // 引入路由
+var travelRouter = require('./routes/travel-pwa-mock/index');
+var testRouter = require('./routes/test');
 var blogRouter = require('./routes/blog');
+var todolistRouter = require('./routes/todolist');
+var wxLittleBirdRouter = require('./routes/wx-litter-bird-server');
 var userRouter = require('./routes/user');
-// var indexRouter = require('./routes');
+var cmsRouter = require('./routes/cms');
+var indexRouter = require('./routes');
 var app = express();
 
 // view engine setup
@@ -40,20 +45,29 @@ const redisSessionStore = new ConnectRedis({
 })
 app.use(session({
   secret: 'EwdsNl32_123#',
+  resave: false, // 重新保存：强制会话保存即使是未修改的, 默认为true
+  saveUninitialized: true, // 强制“未初始化”的会话保存到存储
   cookie: {
     path: '/', // 默认 '/'
     httpOnly: true, // 禁止前端js操作cookie,只能后端操作
     maxAge: 24 * 60 * 60 * 1000, // 24h失效
-    store: redisSessionStore // session 存到redis中
-  }
+  },
+  store: redisSessionStore // session 存到redis中
 }));
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // 注册路由
-// app.use('', indexRouter)
+app.use('', indexRouter)
+app.use('/api/travel', travelRouter)
+
+app.use('/api/test', testRouter)
 app.use('/api/blog', blogRouter)
+
+app.use('/api/birds', wxLittleBirdRouter)
+app.use('/api/todos', todolistRouter)
 app.use('/api/user', userRouter)
+app.use('/api/cms', cmsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
