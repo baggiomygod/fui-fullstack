@@ -5,8 +5,21 @@ const autoprefixer = require('autoprefixer');
    3. autoprefixer 自动添加需要加前缀的css属性；
 */
 module.exports = {
+  // parser: require('postcss-stylus'),
+  // plugins: [
+  //   require('postcss-import'),
+  //   require('precss'),
+  //   require('cssnano'),
+  //   require('postcss-pxtorem')({
+  //     "rootValue": 37.5, // 750的设计稿
+  //         "propList": [
+  //           "*"
+  //         ]
+  //   }),
+  //   require("autoprefixer")({ browsers: ['last 2 versions'] }),
+  // ]
   plugins: {
-    autoprefixer: {},
+    autoprefixer,
     "postcss-pxtorem": {
       "rootValue": 37.5, // 750的设计稿
       "propList": [

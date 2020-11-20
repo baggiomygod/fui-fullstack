@@ -1,11 +1,16 @@
 import * as React from 'react'
+import Middle from './middle';
 
-const MyContext = React.createContext('default')
+import {
+  MyContext,
+  ButtonContext
+ } from './my-context';
 
 class Parent extends React.Component {
   public state = {
     childContext: '123',
-    newContext: '456'
+    newContext: '456',
+    buttonCount: 0,
   }
   public componentDidMount() {
     console.log('context did:', this.context)
@@ -23,6 +28,12 @@ class Parent extends React.Component {
       newContext: e.target.value
     })
   }
+
+  public handleBtn = (e: any) => {
+    this.setState({
+      buttonCount: this.state.buttonCount + 1
+    })
+  }
   public render () {
     console.log('context render:', this.context)
     return (
@@ -38,26 +49,24 @@ class Parent extends React.Component {
             value={this.state.newContext}
             onChange={this.changeInput2}
           />
+        <button onClick={this.handleBtn}>change by buttonContext</button>
+        {/* 多个context 且嵌套 */}
         <MyContext.Provider value={this.state.newContext}>
-          {this.props.children}
+          <ButtonContext.Provider value={this.state.buttonCount}>
+            {this.props.children}
+          </ButtonContext.Provider>
         </MyContext.Provider>
+
+        {/* <MyContext.Provider value={this.state.newContext}>
+            {this.props.children}
+        </MyContext.Provider> */}
       </>
     )
   }
 }
-Parent.contextType = MyContext
-
-function Child1(props: any, context: any) {
-  console.log(props, context)
-  return <MyContext.Consumer>
-        {
-          value => <p>newContext: {value}</p>
-        }
-        </MyContext.Consumer>
-}
 
 export default () => (
   <Parent>
-    <Child1 />
+    <Middle />
   </Parent>
 )

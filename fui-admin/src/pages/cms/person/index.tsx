@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Card, Table, Popconfirm } from 'antd'
+import { Card, Table, Popconfirm, message } from 'antd'
 import FilterForm from './FilterForm'
 import PersonDetail from './PersonDetail'
 import CmsService from 'src/service/cms'
@@ -31,7 +31,7 @@ class PersonPage extends React.Component{
         const pagination:any = {...this.state.pagination}
         pagination.total = res.total
         this.setState({
-            list: res.obj,
+            list: res.data,
             loading: false,
             pagination
         })
@@ -46,6 +46,7 @@ class PersonPage extends React.Component{
         CmsService.delPerson({id})
         .then((res:any) => {
             if (res.code === 0) {
+                message.success('删除成功')
                 this.filterForm.requestList()
             }
         }).catch((err:any) => {

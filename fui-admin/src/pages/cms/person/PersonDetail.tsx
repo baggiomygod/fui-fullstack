@@ -50,7 +50,7 @@ class PersonDetail extends React.Component<IPersonDetail> {
                 if (res.code === 0) {
                     this.showPersonModal()
                     this.setState({
-                        detail: res.obj
+                        detail: res.data
                     })
                 } else {
                     console.log(res.code)

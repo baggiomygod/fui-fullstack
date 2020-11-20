@@ -32,6 +32,7 @@ const getDetail = (id) => {
 const createBlog = (blogData = {}) => {
     // blogData 是一个博客对象
     const {title, content, author} = blogData
+    console.log('author:', author)
     const createTime = Date.now()
     const sql = `
     insert into blogs (title, content, author, create_time) 

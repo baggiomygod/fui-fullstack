@@ -18,7 +18,7 @@ class CarForm extends React.Component<ICarProps> {
             .then((res:any) => {
                 if (res.code === 0) {
                     //  数据传给父组件
-                    this.props.renderDriving(res.obj)
+                    this.props.renderDriving(res.data)
                 }
             }).catch((err:any) => {
                 console.log(err)
@@ -45,6 +45,9 @@ class CarForm extends React.Component<ICarProps> {
                 <Button type="primary">闪烁(未完)</Button>
                 <Button type="primary">交通轨迹(未完)</Button>
                 <Button type="primary">绘制(未完)</Button>
+                <Button type="default">控规-住宅</Button>
+                <Button type="dashed">控规-商业</Button>
+                <Button type="danger">控规-公园</Button>
             </div>
         )
     }

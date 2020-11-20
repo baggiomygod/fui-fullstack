@@ -14,10 +14,15 @@ interface ICategoryProps {
   label: string
   iconUrl: string
   key: string
+<<<<<<< HEAD
   text?: string
   url: ''
+=======
+  text?: string,
+  url?: string | undefined
+>>>>>>> 068837730602026ee65a57bae44b4921ad43bb74
 }
-class Category extends React.Component {
+class Category extends React.Component<any> {
   public state = {
     categoryList: []
   }
@@ -35,9 +40,13 @@ class Category extends React.Component {
     categoryList: list
    })
   }
+  public goPage = (url: string | undefined) => {
+      this.props.history.push(url)
+  }
   public renderCategories () {
     return this.state.categoryList.map((item: ICategoryProps) => {
       return (
+<<<<<<< HEAD
             <div className="category-item" key={item.key}>
         <NavLink to={item.url} >
               <ImgIcon src={item.iconUrl}
@@ -48,6 +57,15 @@ class Category extends React.Component {
         </NavLink>
             </div>
 
+=======
+        <div className="category-item" key={item.key} onClick={this.goPage.bind(this, item.url)} >
+          <ImgIcon src={item.iconUrl}
+                    size={'large'}
+                    shape="circle"
+                    iconText={item.text} />
+          <p className="text">{item.label}</p>
+        </div>
+>>>>>>> 068837730602026ee65a57bae44b4921ad43bb74
       )
     })
   }

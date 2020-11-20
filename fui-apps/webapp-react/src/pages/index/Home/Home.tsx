@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withRouter } from "react-router-dom"
 import Header from './Header/Header'
 import Category from './Category/Category'
 import List from './List/List'
@@ -67,11 +68,11 @@ class Home extends React.Component<IProps> {
         return (
             <div className="home-wrap">
                 <Header />
-                <Category />
+                <Category {...this.props} />
                 <List />
             </div>
         )
     }
 }
 
-export default Home
+export default withRouter(Home)

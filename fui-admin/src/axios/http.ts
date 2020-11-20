@@ -18,6 +18,7 @@ const axios = new Axios(appConfig, data => {
     return data
 })
 
+// eslint:disable
 export const http = (method: string, url: string, params: any = {}, data: any = {}): any => {
         return new Promise((resolve, reject) => {
             axios.ajax({

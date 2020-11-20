@@ -3,7 +3,16 @@ var router = express.Router();
 const { getList, getDetail, createBlog, updateBlog, delBlog } = require('../controller/blog.controller')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 const loginCheck = require('../middleware/loginCheck')
-// 获取列表
+/**
+ * 获取列表
+ * url: api/blog/list
+ * method: get
+ * {
+ *  title: string,
+ *  content: string,
+ *  author: string
+ * }
+ */
 router.get('/list', async (req, res, next) => {
     const author = req.query.autor || ''
     const title = req.query.title || ''
@@ -12,19 +21,37 @@ router.get('/list', async (req, res, next) => {
                 item.create_time = new Date(item.create_time).toJSON('yyyy-MM-dd')
                 item.update_time = new Date(item.update_time).toJSON('yyyy-MM-dd')
             })
+    
     res.json(new SuccessModel(result, '查询成功'))
 });
 
-// 获取详情
+/**
+ * 获取详情
+ *  get
+ *  url: api/blog/detail
+ *  method: get
+ *  {
+ *   id: string,
+ *  }
+ */
 router.get('/detail', async (req, res, next) => {
     const id = req.query.id || ''
     const blogData = await getDetail(id)
     res.json(new SuccessModel(blogData[0], '成功'))
 });
 
-// 新增
+/**
+ * 新增
+ * /api/blog/add
+ * {
+ *  title: string,
+ *  content: string,
+ *  id?: ''
+ * }
+ */
+
 router.post('/add', loginCheck, async (req, res, next) => {
-    // req.body.author = req.session.username
+    req.body.author = req.session.username
     const data = await createBlog(req.body)
     res.json(new SuccessModel({ id: data.insertId }, '创建成功'))
 });

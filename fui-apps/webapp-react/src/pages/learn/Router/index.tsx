@@ -13,14 +13,33 @@ import ReactComponent from '../react-test/ReactComponent'
 import SetState1 from '../react-test/SetState/SetState1'
 import ReactPureComponent from '../react-test/ReactPureComponent'
 import Context from '../react-test/context'
+import Children from '../react-test/Children'
+import BatchedUpdate from '../react-test/batchedUpdate'
+import LifeCycleExample from '../react-test/lifeCycle/Example'
+import MemoTest from '../react-test/memo'
+import useMemoTest from '../react-test/memo/useMemoTest'
+import useMemoTest2 from '../react-test/useMemo'
+import useRefTest from '../react-test/Refs/useRef'
+import useCallback from '../react-test/useCallback'
 
 // Hook Component
 import UseState from '../react-test/Hook/UseState';
 import ExampleWithManyStates from '../react-test/Hook/ExampleWithManyStates';
 import UseEffect from '../react-test/Hook/UseEffect';
+import UseEffectTest1 from '../react-test/Hook/useEffectTest1';
+import customHooks from '../react-test/customHooks';
+import ReduxTodoList from '../react-test/redux';
 
+// animate
+import LetterOpen from '../animate/LetterOpen/letter';
+import LetterAnimation from '../LetterAnimation'
 
-console.log('ForwardRef:', <ForwardRef />)
+// 插件测试
+import Calaulator1 from '../calculators/react-calculator'
+
+// video test
+import GriffithVideo from '../h5-media/griffith-video'
+
 class Main extends React.Component<any> {
   constructor(props: any) {
     super(props)
@@ -43,11 +62,31 @@ class Main extends React.Component<any> {
                 <Route exact={true} path="/state1" component={SetState1} />
                 <Route exact={true} path="/pure_comp" component={ReactPureComponent} />
                 <Route exact={true} path="/context" component={Context} />
-
+                <Route exact={true} path="/children" component={Children} />
+                <Route exact={true} path="/batched_update" component={BatchedUpdate} />
+                <Route exact={true} path="/life_cycle_example" component={LifeCycleExample} />
 
                 <Route exact={true} path="/usestate" component={UseState} />
                 <Route exact={true} path="/manystate" component={ExampleWithManyStates} />
                 <Route exact={true} path="/useeffect" component={UseEffect} />
+                <Route exact={true} path="/useeffect_test1" component={UseEffectTest1} />
+
+                <Route exact={true} path="/memo" component={MemoTest} />
+                <Route exact={true} path="/useMemoTest" component={useMemoTest} />
+                <Route exact={true} path="/useMemo2" component={useMemoTest2} />
+                <Route exact={true} path="/useCallback" component={useCallback} />
+
+                <Route exact={true} path="/useRefTest" component={useRefTest} />
+                <Route exact={true} path="/customHooks" component={customHooks} />
+                <Route exact={true} path="/ReduxTodoList" component={ReduxTodoList} />
+
+                {/* animate */}
+                <Route exact={true} path="/letter_open" component={LetterOpen} />
+                <Route exact={true} path="/r_calaulator" component={Calaulator1} />
+                <Route exact={true} path="/letter_animation" component={LetterAnimation} />
+
+                {/* media */}
+                <Route exact={true} path="/griffith_video" component={GriffithVideo} />
 
           </Switch>
         </ErrorBoundary>

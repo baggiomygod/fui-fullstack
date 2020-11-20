@@ -1,5 +1,10 @@
 # react webapp
 
+## 启动
+```
+  yarn
+  yarn dev
+```
 ## 路由
 
 - /home 首页

@@ -40,6 +40,7 @@ class BikeMapPage extends React.Component{
         this.renderDriving = this.renderDriving.bind(this)
         this.renderLushu = this.renderLushu.bind(this)
         this.formatePoints = this.formatePoints.bind(this)
+
     }
     public componentDidMount() {
         if (window.location.origin.indexOf('github.io') === -1) {
@@ -54,7 +55,30 @@ class BikeMapPage extends React.Component{
     // 渲染地图
     public renderMap () {
         this.map =new this.BMap.Map('map-container')
-        this.map.centerAndZoom(new this.BMap.Point(120.152449, 30.244392), 12)
+        this.map.centerAndZoom(new this.BMap.Point(120.152449, 30.244392), 14)
+        this.map.enableScrollWheelZoom(true);
+        
+        // tslint:disable-next-line
+        new BMapLib.DrawingManager(this.map, {
+            isOpen: true, 
+            drawingType: BMAP_DRAWING_MARKER, // tslint:disable-line
+            enableDrawingTool: true,
+            enableCalculate: false,
+            drawingToolOptions: {
+                anchor: 'BMAP_ANCHOR_TOP_LEFT',
+                offset: new this.BMap.Size(5, 5),
+                drawingTypes : [
+                    BMAP_DRAWING_MARKER, // tslint:disable-line
+                    BMAP_DRAWING_CIRCLE, // tslint:disable-line
+                    BMAP_DRAWING_POLYLINE, // tslint:disable-line
+                    BMAP_DRAWING_POLYGON, // tslint:disable-line
+                    BMAP_DRAWING_RECTANGLE  // tslint:disable-line
+                 ]
+            },
+            polylineOptions: {
+                strokeColor: "#333"
+            }
+        })
     }
     public formatePoints():any {
         const start = this.state.drivingData.start
@@ -79,6 +103,7 @@ class BikeMapPage extends React.Component{
         });    // 驾车实例
 		driving.search(satrtEndPoints.startPoint, satrtEndPoints.endPoint);
 		driving.setSearchCompleteCallback(() => {
+            console.log('getResults', driving.getResults()) // error undefined
 			const pts = driving.getResults().getPlan(0).getRoute(0).getPath();    // 通过驾车实例，获得一系列点的数组
 			const paths = pts.length;    // 获得有几个点
 
@@ -102,6 +127,7 @@ class BikeMapPage extends React.Component{
     }
     // 显示轨迹
     public renderDriving (data:any) {
+        console.log(data)
         this.clearMap()
         this.setState({
             carInfo: data.carInfo,

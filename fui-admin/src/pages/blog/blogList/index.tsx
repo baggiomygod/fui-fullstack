@@ -7,7 +7,7 @@ import './index.less'
 interface IArticle {
     title?:string
     content?:string
-    createtime?:string
+    create_time?:string
     author?:string
 }
 interface IState {
@@ -33,7 +33,7 @@ class BlogPage extends React.Component{
         articleContent: {
             title: '',
             content: '',
-            createtime: '',
+            create_time: '',
             author: ''
         } // 文章详情
     }
@@ -168,7 +168,7 @@ class BlogPage extends React.Component{
                     temp = null; 
                     return output;
              }},
-            {title: '创建时间', dataIndex: 'createtime'},
+            {title: '创建时间', dataIndex: 'create_time'},
             {title: '作者', dataIndex: 'author'},
             {
                 title: '操作',

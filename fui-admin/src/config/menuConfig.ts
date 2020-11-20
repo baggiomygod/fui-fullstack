@@ -15,6 +15,16 @@ const MenuConfig: object[] = [
                 key: '/blog/list',
                 icon: 'file-markdown'
             },
+            {
+                title: '文件管理',
+                key: '/blog/upload',
+                icon: 'file'
+            },
+            {
+                title: '权限test',
+                key: '/blog/premission_list',
+                icon: 'file-markdown'
+            },
         ]
     },
     {

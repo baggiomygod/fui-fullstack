@@ -11,18 +11,21 @@ export class ArticlesService {
 
     constructor(
         @InjectRepository(Articles)
-        private readonly articlesRepository: Repository<Articles>) {}
-    
+        private readonly articlesRepository: Repository<Articles>
+    ) {}
+
+    // root
     root(): string {
-        return 'articles list'
+        return 'articles list';
     }
+    
     /**
      * articles
      * 返回文章列表
      */
     async articles(query: ArticlesQueryDto): Promise<Articles[]> {
-        console.log('query:', query)
-        return await this.articlesRepository.find()
+        console.log('articles query:', query);
+        return await this.articlesRepository.find();
     }
     /**
      * 返回文章
@@ -30,9 +33,9 @@ export class ArticlesService {
      */
     async findArticle(id: string): Promise<Articles> {
         const params = {
-            id
-        }
-        return await this.articlesRepository.findOne(params)
+            id,
+        };
+        return await this.articlesRepository.findOne(params);
     }
 
     async create(params: CreateArticleDto): Promise<Articles> {

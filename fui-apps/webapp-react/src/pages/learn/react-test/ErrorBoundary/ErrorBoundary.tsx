@@ -19,11 +19,14 @@ class ErrorBoundary extends React.Component<IProps>{
     super(props)
     // this.state = { hasError: false }
   }
-  public getDerivedStateFromError() {
-    return { hasError: true }
+
+  public getDerivedStateFromError(error: any) {
+    // 更新 state 使下一次渲染可以显降级 UI
+    return { hasError: true };
   }
 
   public componentDidCatch(error: any, info: any) {
+    console.log('componentDidCatch:', error, info)
     // logErrorToMyService(error, info)
     this.setState({
       hasError: error,

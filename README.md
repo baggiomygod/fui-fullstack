@@ -35,3 +35,16 @@
     3. echarts
     4. three.js
 
+
+## 本地开发
+启动前端：yarn start
+启动后端：
+```
+    // blog_server_node/blog-express 
+    yarn dev 
+    // 端口port 8010
+```
+启用mock:
+```
+    
+```

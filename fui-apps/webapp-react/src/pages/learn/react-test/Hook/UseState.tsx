@@ -1,4 +1,7 @@
 import * as React  from 'react'
+// tslint:disable-next-line
+// import style from './useState.css'
+import './useState.css'
 
 function UseState() {
   // useState就是一个HOOK
@@ -7,7 +10,7 @@ function UseState() {
     return setCount(count + 1)
   }
   return(
-    <div>
+    <div className="container">
       <p>you clicjed {count} times</p>
       <button onClick={handleButton}>click!</button>
     </div>

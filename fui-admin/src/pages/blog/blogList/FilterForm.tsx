@@ -49,7 +49,7 @@ class FilterForm extends React.Component<IFilterFormProps> {
             author: searchForm.author || ''
         }
         const blogData: any = await blogService.getBlogList(params)
-            if (blogData.code === 0) {
+            if (blogData && blogData.code === 0) {
                 this.props.getTableData(blogData)
             }
         }
