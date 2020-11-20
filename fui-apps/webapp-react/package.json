@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "cos-js-sdk-v5": "^0.5.8",
     "lib-flexible": "^0.3.2",
     "react": "^16.8.2",

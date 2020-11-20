@@ -1,5 +1,7 @@
 import * as React from 'react'
 import {ImgIcon} from 'src/fui'
+import { NavLink } from 'react-router-dom'
+
 // import Fui from '../../../../fui'
 import './Category.styl'
 // import FuiIcon2x from 'src/statics/images/logo/fui-2x.png'
@@ -13,6 +15,7 @@ interface ICategoryProps {
   iconUrl: string
   key: string
   text?: string
+  url: ''
 }
 class Category extends React.Component {
   public state = {
@@ -23,10 +26,10 @@ class Category extends React.Component {
   }
   public componentWillMount () {
     const list = [
-      {label: '摄影', iconUrl: FuiIcon2x, key: 'photo', text: ''},
-      {label: '前端', iconUrl: FuiIcon2x, key: 'web', text: ''},
-      {label: '足球', iconUrl: FuiIcon2x, key: 'ball', text: ''},
-      {label: '旅行', iconUrl: '', key: 'travel', text: 'T'},
+      {label: '摄影', iconUrl: FuiIcon2x, key: 'photo', text: '', url: ''},
+      {label: '前端', iconUrl: FuiIcon2x, key: 'web', text: '', url: 'web_list'},
+      {label: '足球', iconUrl: FuiIcon2x, key: 'ball', text: '', url: ''},
+      {label: '旅行', iconUrl: '', key: 'travel', text: 'T', url: ''},
     ]
    this.setState({
     categoryList: list
@@ -35,13 +38,16 @@ class Category extends React.Component {
   public renderCategories () {
     return this.state.categoryList.map((item: ICategoryProps) => {
       return (
-        <div className="category-item" key={item.key}>
-          <ImgIcon src={item.iconUrl}
-                    size={'large'}
-                    shape="circle"
-                    iconText={item.text} />
-          <p className="text">{item.label}</p>
-        </div>
+            <div className="category-item" key={item.key}>
+        <NavLink to={item.url} >
+              <ImgIcon src={item.iconUrl}
+                        size={'large'}
+                        shape="circle"
+                        iconText={item.text} />
+              <p className="text">{item.label}</p>
+        </NavLink>
+            </div>
+
       )
     })
   }

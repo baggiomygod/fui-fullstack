@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { Route, withRouter, Switch, HashRouter } from 'react-router-dom';
+import { Route, withRouter, Switch, HashRouter, Redirect } from 'react-router-dom';
 import {connect} from 'react-redux'
 import Home from '../Home/Home';
 import My from '../My/My';
+import WebList from '../WebList/WebList';
 import Login from '../Login';
 import Search from '../Search/Search';
 import Layout from '../Layout';
@@ -26,7 +27,9 @@ class Main extends React.Component<IProps> {
           <Layout>
               <Route exact={true} path="/home" component={Home} />
               <Route exact={true} path="/user" component={My} />
+              <Route exact={true} path="/web_list" component={WebList} />
               <Route exact={true} path="/article_detail" component={ArticleDetail} />
+              <Redirect to="/web_list" />
           </Layout>
         )
         // common

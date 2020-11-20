@@ -28,13 +28,11 @@ class Home extends React.Component<IProps> {
       console.log(result1)
       console.log(result2)
 
-      const myIdentity1: <T>(arg: T[]) => T[] = this.loggingIdentity
-      const myIdentity2: <U>(arg: U) => U = this.identity
+      // const myIdentity1: <T>(arg: T[]) => T[] = this.loggingIdentity
+      // const myIdentity2: <U>(arg: U) => U = this.identity
 
-      const mures1 = myIdentity1<number>([123, 2])
-      const mures2 = myIdentity2<string>('oiu')
-      console.log(mures1)
-      console.log(mures2)
+      // const mures1 = myIdentity1<number>([123, 2])
+      // const mures2 = myIdentity2<string>('oiu')
 
       // 带有调用签名的对象字面量定义泛型函数
       // error Type literal has only a call signature — use `<T>(arg: T) => T` instead.

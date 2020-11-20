@@ -8,6 +8,7 @@ class UseErrorBoundary extends React.Component{
       }
       return <div>{num}</div>
     }
+    
     return (
         <div>{renderList()}</div>
     )
