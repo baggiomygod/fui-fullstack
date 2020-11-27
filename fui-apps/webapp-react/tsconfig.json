@@ -11,8 +11,8 @@
         "moduleResolution": "node",
         "forceConsistentCasingInFileNames": true,
         "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noImplicitAny": true,
+        "noImplicitThis": false,
+        "noImplicitAny": false,
         "strictNullChecks": true,
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": true,
@@ -25,7 +25,8 @@
         "acceptance-tests",
         "webpack",
         "jest",
-        "src/setupTests.ts"
+        "src/setupTests.ts",
+        "src/pages/index/views/WebVR/*"
       ],
       "include": [
           "./src"

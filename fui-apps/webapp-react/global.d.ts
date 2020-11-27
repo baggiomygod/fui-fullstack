@@ -24,3 +24,7 @@ declare enum Directions{
 declare namespace jQueryN {
   function ajax(url: string): void
 }
+
+declare class Orienter{
+  
+}

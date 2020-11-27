@@ -1,10 +1,18 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+   },
   "rules": {
     "ordered-imports": false,
     "no-console": [false],
     "object-literal-sort-keys": false,
     "no-var-requires": false,
+    "no-unused-variable": false,
+    "no-unused-locals" : false,
+    "no-unused-parameters": false,
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "no-angle-bracket-type-assertion": false,
     "no-reference": false,
     "member-ordering": false,

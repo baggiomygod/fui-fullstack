@@ -4,7 +4,7 @@ import AddTodo from './add'
 import { connect } from 'react-redux'
 import { fetchTodoList } from 'src/pages/index/store/action/todosAction'
 
-import List from './List'
+import List from './list'
 interface IProps {
   todoList: any
   getTodoList: () => void

@@ -2,7 +2,7 @@ import * as React from 'react'
 import {connect} from 'react-redux'
 import { createArticles } from 'src/pages/index/store/action/articlesAction'
 import './CreateArticle.styl'
-import UploadImg from '../components/UploadImg/UploadImg';
+import UploadImg from '../../components/UploadImg/UploadImg';
 import { GoBackHeader } from 'src/business-components'
 /**
  *

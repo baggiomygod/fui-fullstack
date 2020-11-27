@@ -1,5 +1,5 @@
 import * as React from 'react'
-import BottomBar from '../components/BottomBar/BottomBar';
+import BottomBar from '../../components/BottomBar/BottomBar';
 
 /**
  * @constructor <Home />

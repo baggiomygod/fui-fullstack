@@ -6,6 +6,7 @@ import Header from '../../../../components/header';
 
 import './index.styl';
 
+/* tslint:disable */
 interface IDayProps {
   day: number
   onSelect: (d: any) => void
@@ -17,15 +18,15 @@ function Day(props: IDayProps) {
         return <td className="null" />;
     }
 
-    const classes = [];
+    const classes: any[] = [];
 
     const now = h0();
 
     if (day < now) {
         classes.push('disabled');
     }
-
-    if ([6, 0].includes(new Date(day).getDay())) {
+    const sixZero: any = [6, 0]
+    if (sixZero.includes(new Date(day).getDay())) {
         classes.push('weekend');
     }
 
@@ -65,10 +66,11 @@ function Month(props: IMonthProps) {
     const startDay = new Date(startingTimeInMonth);
     const currentDay = new Date(startingTimeInMonth);
 
-    let days = [];
+    let days: any[] = [];
 
     while (currentDay.getMonth() === startDay.getMonth()) {
-        days.push(currentDay.getTime());
+        const day: any = currentDay.getTime()
+        days.push(day);
         currentDay.setDate(currentDay.getDate() + 1);
     }
 
@@ -82,10 +84,10 @@ function Month(props: IMonthProps) {
         new Array(lastDay.getDay() ? 7 - lastDay.getDay() : 0).fill(null)
     );
 
-    const weeks = [];
+    const weeks: any[] = [];
 
     for (let row = 0; row < days.length / 7; ++row) {
-        const week = days.slice(row * 7, (row + 1) * 7);
+        const week: any[] = days.slice(row * 7, (row + 1) * 7);
         weeks.push(week);
     }
 

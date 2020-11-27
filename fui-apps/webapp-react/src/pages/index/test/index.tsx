@@ -4,7 +4,7 @@ import testService from 'src/http-service/test'
 
 export default function test() {
   const getData = async () => {
-    Promise.race()
+    // Promise.race()
     await testService.getTestList1()
     await testService.getTestList2()
   }

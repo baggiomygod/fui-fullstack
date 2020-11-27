@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
-import EditModal from '../../components/EditModal/EditModal';
+import EditModal from '../../../components/EditModal/EditModal';
 
 import './SearchBar.styl'
 /**
