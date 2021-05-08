@@ -28,7 +28,7 @@
     "qcloud-cos-sts": "^2.0.7",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
-    "typeorm": "^0.2.13",
+    "typeorm": "^0.2.25",
     "typescript": "^2.6.2",
     "@nestjs/passport": "5.1.0",
     "jsonwebtoken": "^8.5.1",
